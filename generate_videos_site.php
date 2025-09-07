@@ -1,12 +1,19 @@
 <?php
 /**
- * Génère un fichier index.html statique (écrasé si présent).
- * Usage: php generate_videos.php
+ * Génère plusieurs pages statiques HTML à partir des IDs dans video_ids.php.
+ * - index.html affiche la section "Cours sur l'Agilité à l'Échelle" (par défaut).
+ * - Une page par section est générée uniquement si elle contient des vidéos.
+ * - Les sous-sections vides sont masquées.
+ *
+ * Usage : php generate_videos.php
  */
 
 require __DIR__ . '/video_ids.php';
 
-/* ---------- Utils ---------- */
+/* =======================
+ * Utils
+ * ======================= */
+
 function e(string $s): string { return htmlspecialchars($s, ENT_QUOTES, 'UTF-8'); }
 
 function normalizeVideos(array $arr): array {
@@ -28,12 +35,14 @@ function normalizeVideos(array $arr): array {
     }
     return $out;
 }
+
 function hasVideos(array $arr): bool {
     return count(normalizeVideos($arr)) > 0;
 }
 
 function gridHtml(array $ids): string {
     $videos = normalizeVideos($ids);
+    if (empty($videos)) return '';
     $out = '<div class="grid">';
     foreach ($videos as $v) {
         $id   = e($v['id']);
@@ -48,33 +57,8 @@ function gridHtml(array $ids): string {
     return $out . '</div>';
 }
 
-function sectionHtml(string $anchor, string $title, array $ids): string {
-    if (!hasVideos($ids)) return '';
-    $out  = '<section id="'.e($anchor).'">';
-    $out .= '<div class="section-head"><h2>'.e($title).'</h2></div>';
-    $out .= '<div class="section-body">';
-    // modèle de commentaire (invisible)
-    $out .= "<!--\n  <p class=\"note\">Commentaire court sur \"".e($title)."\".</p>\n  <ul class=\"links\">\n    <li><a href=\"#\">Lien utile</a></li>\n  </ul>\n-->\n";
-    $out .= gridHtml($ids);
-    $out .= '</div></section>';
-    return $out;
-}
-function subsectionOpen(string $title): string {
-    return '<div class="subsection"><h3>'.e($title).'</h3><div class="section-body">' .
-           "<!--\n  <p class=\"note\">Commentaire court pour \"".e($title)."\".</p>\n  <ul class=\"links\">\n    <li><a href=\"#\">Lien</a></li>\n  </ul>\n-->\n";
-}
-function subsectionClose(): string { return '</div></div>'; }
-
-/* ---------- Corps HTML ---------- */
-$html = <<<HTML
-<!doctype html>
-<html lang="fr">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Agile Toolkit Hub</title>
-  <meta name="description" content="Page statique listant les vidéos de la chaîne YouTube Agile Toolkit, organisée par thèmes et sous-thèmes." />
-  <style>
+function cssStyles(): string {
+    return <<<'CSS'
     :root{
       --bg: #f7f8fb;
       --card: #ffffff;
@@ -94,7 +78,21 @@ $html = <<<HTML
     header .wrap{display:flex;gap:16px;align-items:center;justify-content:space-between;padding-block:14px}
     .title{font-weight:700;letter-spacing:.2px}
     nav{display:flex;flex-wrap:wrap;gap:10px}
-    nav a{padding:6px 10px;border-radius:999px;background:#f0f4ff;border:1px solid #c9d6ff}
+    nav a{
+      padding:6px 12px;border-radius:999px;background:#f0f4ff;border:1px solid #c9d6ff;
+      color:#214bbb;font-weight:500
+    }
+    /* PAGE COURANTE : plus visible (fond accent + texte blanc + gras) */
+    nav a[aria-current="page"]{
+      background:var(--accent);
+      border-color:var(--accent);
+      color:#fff;
+      font-weight:700;
+      box-shadow:0 0 0 3px rgba(46,108,255,.18) inset;
+      text-decoration:none;
+    }
+    nav a[aria-current="page"]:hover{ text-decoration:none }
+
     main{padding-top:8px}
     section{margin:28px auto;padding:20px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 1px 0 #fff inset, 0 8px 20px rgba(10,20,40,.05)}
     h2,h3{margin:0 0 6px}
@@ -106,9 +104,8 @@ $html = <<<HTML
     .note{margin:8px 0 0;color:var(--muted)}
     .links{margin:6px 0 0 18px}
 
-    /* --- Grille 3 colonnes (embeds plus grands) --- */
+    /* Grille ~3 colonnes (responsive) */
     .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));margin-top:12px}
-
     .tile{display:flex;flex-direction:column;gap:8px}
     .video{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--border);background:#f5f7fb;aspect-ratio:16/9}
     .video iframe{width:100%;height:100%;border:0;display:block;background:#000}
@@ -123,82 +120,226 @@ $html = <<<HTML
       .wrap{padding:18px}
       nav{display:none}
     }
-  </style>
+CSS;
+}
+
+function navHtml(array $navItems, string $currentSlug): string {
+    $links = [];
+    foreach ($navItems as $it) {
+        $attr = ($it['slug'] === $currentSlug) ? ' aria-current="page"' : '';
+        $links[] = '<a href="'.e($it['href']).'"'.$attr.'>'.e($it['label']).'</a>';
+    }
+    return implode("\n        ", $links);
+}
+
+function pageShell(string $currentSlug, string $pageTitle, string $mainHtml, array $navItems): string {
+    $nav = navHtml($navItems, $currentSlug);
+    $css = cssStyles();
+    $docTitle = 'Agile Toolkit Hub — ' . $pageTitle; // <title>
+    return '<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>'.e($docTitle).'</title>
+  <meta name="description" content="Catalogue vidéo Agile Toolkit Hub (pages statiques par section)." />
+  <style>'.$css.'</style>
 </head>
 <body>
   <header>
     <div class="wrap">
       <div class="title">🎬 Agile Toolkit Hub</div>
       <nav aria-label="Sections">
-        <a href="#agile-scale">Agilité à l'Échelle</a>
-        <a href="#retrospectives">Rétrospectives</a>
-        <a href="#demos">Démos</a>
-        <a href="#questions-agiles">Questions Agiles</a>
-        <a href="#glossaire">Glossaire</a>
-        <a href="#devops">DevOps</a>
-        <a href="#agilite-ia">Agilité & IA</a>
+        '.$nav.'
       </nav>
     </div>
   </header>
   <main class="wrap">
-HTML;
-
-/* ---------- Sections simples ---------- */
-$html .= sectionHtml('agile-scale', "Cours sur l'Agilité à l'Échelle", $agile_scale);
-$html .= sectionHtml('retrospectives', 'Rétrospectives', $retrospectives);
-$html .= sectionHtml('demos', 'Démos', $demos);
-$html .= sectionHtml('questions-agiles', 'Questions Agiles', $questions_agiles);
-$html .= sectionHtml('devops', 'DevOps', $devops);
-
-/* ---------- Glossaire (affiché seulement si non vide) ---------- */
-if (hasVideos($glossaire_a) || hasVideos($glossaire_b)) {
-    $html .= '<section id="glossaire"><div class="section-head"><h2>Glossaire de l\'agilité</h2></div>';
-    if (hasVideos($glossaire_a)) {
-        $html .= subsectionOpen('A') . gridHtml($glossaire_a) . subsectionClose();
-    }
-    if (hasVideos($glossaire_b)) {
-        $html .= subsectionOpen('B') . gridHtml($glossaire_b) . subsectionClose();
-    }
-    $html .= '</section>';
-}
-
-/* ---------- Agilité & IA (affiché seulement si au moins une sous-section) ---------- */
-$ai_sections = [
-    'Benchmark IA'                              => $ai_benchmark,
-    "Réflexion sur l'IA"                        => $ai_reflexion,
-    'IA : les Essentiels'                       => $ai_essentiels,
-    'Génération de templates de Rétrospectives Agiles' => $ai_retro_templates,
-    'Synthèse de Documents et diagrammes'       => $ai_synthese,
-    'Présentation de Documents'                 => $ai_presentation_docs,
-    "Mise en place d'une IA locale"             => $ai_locale,
-    'Custom GPTs'                               => $ai_custom_gpts,
-    'Vibe Coding'                               => $ai_vibe_coding,
-    'Speech to Text'                            => $ai_speech_to_text,
-    'APIs de LLM'                               => $ai_apis_llm,
-];
-$any_ai = false;
-foreach ($ai_sections as $arr) { if (hasVideos($arr)) { $any_ai = true; break; } }
-if ($any_ai) {
-    $html .= '<section id="agilite-ia"><div class="section-head"><h2>Agilité et IA</h2></div>';
-    foreach ($ai_sections as $label => $arr) {
-        if (!hasVideos($arr)) continue;
-        $html .= subsectionOpen($label) . gridHtml($arr) . subsectionClose();
-    }
-    $html .= '</section>';
-}
-
-/* ---------- Fin ---------- */
-$html .= <<<HTML
-    <footer>© Agile Toolkit — Page statique HTML/CSS générée par PHP.</footer>
+    '.$mainHtml.'
+    <footer>© Agile Toolkit — Pages statiques HTML/CSS générées par PHP.</footer>
   </main>
 </body>
-</html>
-HTML;
-
-/* ---------- Écriture du fichier ---------- */
-$file = __DIR__ . '/index.html';
-if (file_put_contents($file, $html) === false) {
-    fwrite(STDERR, "Erreur: impossible d'écrire $file\n");
-    exit(1);
+</html>';
 }
-echo "Généré: $file\n";
+
+/* =======================
+ * Données des sections
+ * ======================= */
+
+$sections = [
+    // simples
+    'agile-scale' => [
+        'label' => "Agilité à l'Échelle",
+        'title' => "Cours sur l'Agilité à l'Échelle",
+        'type'  => 'simple',
+        'data'  => $agile_scale,
+        'filename' => 'index.html', // page d'accueil
+    ],
+    'retrospectives' => [
+        'label' => 'Rétrospectives',
+        'title' => 'Rétrospectives',
+        'type'  => 'simple',
+        'data'  => $retrospectives,
+        'filename' => 'retrospectives.html',
+    ],
+    'demos' => [
+        'label' => 'Démos',
+        'title' => 'Démos',
+        'type'  => 'simple',
+        'data'  => $demos,
+        'filename' => 'demos.html',
+    ],
+    'questions-agiles' => [
+        'label' => 'Questions Agiles',
+        'title' => 'Questions Agiles',
+        'type'  => 'simple',
+        'data'  => $questions_agiles,
+        'filename' => 'questions-agiles.html',
+    ],
+    'devops' => [
+        'label' => 'DevOps',
+        'title' => 'DevOps',
+        'type'  => 'simple',
+        'data'  => $devops,
+        'filename' => 'devops.html',
+    ],
+
+    // glossaire (A, B)
+    'glossaire' => [
+        'label' => 'Glossaire',
+        'title' => "Glossaire de l'agilité",
+        'type'  => 'glossaire',
+        'sub'   => [
+            'A' => $glossaire_a,
+            'B' => $glossaire_b,
+        ],
+        'filename' => 'glossaire.html',
+    ],
+
+    // Agilité & IA (plusieurs sous-sections)
+    'agilite-ia' => [
+        'label' => 'Agilité & IA',
+        'title' => 'Agilité et IA',
+        'type'  => 'ai',
+        'sub'   => [
+            'Benchmark IA'                              => $ai_benchmark,
+            "Réflexion sur l'IA"                        => $ai_reflexion,
+            'IA : les Essentiels'                       => $ai_essentiels,
+            'Génération de templates de Rétrospectives Agiles' => $ai_retro_templates,
+            'Synthèse de Documents et diagrammes'       => $ai_synthese,
+            'Présentation de Documents'                 => $ai_presentation_docs,
+            "Mise en place d'une IA locale"             => $ai_locale,
+            'Custom GPTs'                               => $ai_custom_gpts,
+            'Vibe Coding'                               => $ai_vibe_coding,
+            'Speech to Text'                            => $ai_speech_to_text,
+            'APIs de LLM'                               => $ai_apis_llm,
+        ],
+        'filename' => 'agilite-ia.html',
+    ],
+];
+
+/* =======================
+ * Détection des pages à générer + nav
+ * ======================= */
+
+$pagesToGenerate = [];
+foreach ($sections as $slug => $cfg) {
+    $type = $cfg['type'];
+    $has  = false;
+    if ($type === 'simple') {
+        $has = hasVideos($cfg['data']);
+    } elseif ($type === 'glossaire' || $type === 'ai') {
+        foreach ($cfg['sub'] as $arr) {
+            if (hasVideos($arr)) { $has = true; break; }
+        }
+    }
+    // 'agile-scale' => on crée index.html quoi qu'il arrive
+    if ($slug === 'agile-scale' || $has) {
+        $pagesToGenerate[$slug] = true;
+    }
+}
+
+// Nav : inclure seulement les sections qui auront une page
+$navItems = [];
+foreach ($sections as $slug => $cfg) {
+    if (!isset($pagesToGenerate[$slug])) continue;
+    $href = ($slug === 'agile-scale') ? 'index.html' : $cfg['filename'];
+    $navItems[] = ['slug'=>$slug, 'label'=>$cfg['label'], 'href'=>$href];
+}
+
+/* =======================
+ * Rendu des pages
+ * ======================= */
+
+function sectionBlockHtml(string $title, array $ids): string {
+    $html  = '<section>';
+    $html .= '<div class="section-head"><h2>'.e($title).'</h2></div>';
+    $html .= '<div class="section-body">';
+    $html .= "<!--\n  <p class=\"note\">Commentaire court sur \"".e($title)."\".</p>\n  <ul class=\"links\">\n    <li><a href=\"#\">Lien utile</a></li>\n  </ul>\n-->\n";
+    $grid = gridHtml($ids);
+    if ($grid === '') {
+        $html .= '<p class="note">Aucune vidéo pour le moment.</p>';
+    } else {
+        $html .= $grid;
+    }
+    $html .= '</div></section>';
+    return $html;
+}
+
+function glossairePageBody(array $sub): string {
+    $html  = '<section>';
+    $html .= '<div class="section-head"><h2>Glossaire de l\'agilité</h2></div>';
+    $html .= '</section>';
+    foreach ($sub as $label => $ids) {
+        if (!hasVideos($ids)) continue;
+        $html .= '<div class="subsection"><h3>'.e($label).'</h3><div class="section-body">';
+        $html .= "<!--\n  <p class=\"note\">Commentaire court pour \"".e($label)."\".</p>\n  <ul class=\"links\">\n    <li><a href=\"#\">Lien</a></li>\n  </ul>\n-->\n";
+        $html .= gridHtml($ids);
+        $html .= '</div></div>';
+    }
+    return $html;
+}
+
+function aiPageBody(array $sub): string {
+    $html  = '<section>';
+    $html .= '<div class="section-head"><h2>Agilité et IA</h2></div>';
+    $html .= '</section>';
+    foreach ($sub as $label => $ids) {
+        if (!hasVideos($ids)) continue;
+        $html .= '<div class="subsection"><h3>'.e($label).'</h3><div class="section-body">';
+        $html .= "<!--\n  <p class=\"note\">Commentaire court pour \"".e($label)."\".</p>\n  <ul class=\"links\">\n    <li><a href=\"#\">Lien</a></li>\n  </ul>\n-->\n";
+        $html .= gridHtml($ids);
+        $html .= '</div></div>';
+    }
+    return $html;
+}
+
+// Générer les fichiers
+$written = [];
+
+foreach ($sections as $slug => $cfg) {
+    if (!isset($pagesToGenerate[$slug])) continue;
+
+    $filename = ($slug === 'agile-scale') ? 'index.html' : $cfg['filename'];
+    $body = '';
+
+    if ($cfg['type'] === 'simple') {
+        $body = sectionBlockHtml($cfg['title'], $cfg['data']);
+    } elseif ($cfg['type'] === 'glossaire') {
+        $body = glossairePageBody($cfg['sub']);
+    } elseif ($cfg['type'] === 'ai') {
+        $body = aiPageBody($cfg['sub']);
+    }
+
+    $html = pageShell($slug, $cfg['title'], $body, $navItems);
+
+    $path = __DIR__ . '/' . $filename;
+    if (file_put_contents($path, $html) === false) {
+        fwrite(STDERR, "Erreur: impossible d'écrire $filename\n");
+        exit(1);
+    }
+    $written[] = $filename;
+}
+
+/* Log minimal */
+echo "Généré : ".implode(', ', $written)."\n";
