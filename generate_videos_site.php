@@ -36,9 +36,7 @@ function normalizeVideos(array $arr): array {
     return $out;
 }
 
-function hasVideos(array $arr): bool {
-    return count(normalizeVideos($arr)) > 0;
-}
+function hasVideos(array $arr): bool { return count(normalizeVideos($arr)) > 0; }
 
 function gridHtml(array $ids): string {
     $videos = normalizeVideos($ids);
@@ -73,25 +71,24 @@ function cssStyles(): string {
     html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans"}
     a{color:var(--accent);text-decoration:none}
     a:hover{text-decoration:underline}
+
     .wrap{max-width:var(--maxw);margin-inline:auto;padding:24px}
-    header{position:sticky;top:0;background:rgba(255,255,255,.85);backdrop-filter:saturate(140%) blur(8px);z-index:10;border-bottom:1px solid var(--border)}
-    header .wrap{display:flex;gap:16px;align-items:center;justify-content:space-between;padding-block:14px}
+    header{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:saturate(140%) blur(8px);z-index:10;border-bottom:1px solid var(--border)}
+    header .wrap{display:flex;gap:12px;align-items:center;justify-content:space-between;padding-block:12px}
     .title{font-weight:700;letter-spacing:.2px}
-    nav{display:flex;flex-wrap:wrap;gap:10px}
+
+    /* Nav : visible mobile, scroll horizontal */
+    nav{display:flex;flex-wrap:nowrap;gap:10px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+    nav::-webkit-scrollbar{display:none}
     nav a{
+      flex:0 0 auto;
       padding:6px 12px;border-radius:999px;background:#f0f4ff;border:1px solid #c9d6ff;
-      color:#214bbb;font-weight:500
+      color:#214bbb;font-weight:500;white-space:nowrap
     }
-    /* PAGE COURANTE : plus visible (fond accent + texte blanc + gras) */
     nav a[aria-current="page"]{
-      background:var(--accent);
-      border-color:var(--accent);
-      color:#fff;
-      font-weight:700;
-      box-shadow:0 0 0 3px rgba(46,108,255,.18) inset;
-      text-decoration:none;
+      background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700;
+      box-shadow:0 0 0 3px rgba(46,108,255,.18) inset;text-decoration:none
     }
-    nav a[aria-current="page"]:hover{ text-decoration:none }
 
     main{padding-top:8px}
     section{margin:28px auto;padding:20px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 1px 0 #fff inset, 0 8px 20px rgba(10,20,40,.05)}
@@ -104,8 +101,15 @@ function cssStyles(): string {
     .note{margin:8px 0 0;color:var(--muted)}
     .links{margin:6px 0 0 18px}
 
-    /* Grille ~3 colonnes (responsive) */
+    /* Grille responsive : 3 cols desktop, 2 cols tablette, 1 col mobile */
     .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));margin-top:12px}
+    @media (max-width: 900px){
+      .grid{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+    }
+    @media (max-width: 600px){
+      .grid{grid-template-columns:1fr}
+    }
+
     .tile{display:flex;flex-direction:column;gap:8px}
     .video{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--border);background:#f5f7fb;aspect-ratio:16/9}
     .video iframe{width:100%;height:100%;border:0;display:block;background:#000}
@@ -115,10 +119,12 @@ function cssStyles(): string {
       .video{padding-top:56.25%}
       .video iframe{position:absolute;inset:0}
     }
+
     footer{color:var(--muted);text-align:center;margin:32px 0 50px}
+
+    /* Mobile tweaks */
     @media (max-width:480px){
-      .wrap{padding:18px}
-      nav{display:none}
+      .wrap{padding:16px}
     }
 CSS;
 }
@@ -167,7 +173,6 @@ function pageShell(string $currentSlug, string $pageTitle, string $mainHtml, arr
  * ======================= */
 
 $sections = [
-    // simples
     'agile-scale' => [
         'label' => "Agilité à l'Échelle",
         'title' => "Cours sur l'Agilité à l'Échelle",
@@ -203,8 +208,6 @@ $sections = [
         'data'  => $devops,
         'filename' => 'devops.html',
     ],
-
-    // glossaire (A, B)
     'glossaire' => [
         'label' => 'Glossaire',
         'title' => "Glossaire de l'agilité",
@@ -215,8 +218,6 @@ $sections = [
         ],
         'filename' => 'glossaire.html',
     ],
-
-    // Agilité & IA (plusieurs sous-sections)
     'agilite-ia' => [
         'label' => 'Agilité & IA',
         'title' => 'Agilité et IA',
@@ -239,7 +240,7 @@ $sections = [
 ];
 
 /* =======================
- * Détection des pages à générer + nav
+ * Quelles pages générer + nav
  * ======================= */
 
 $pagesToGenerate = [];
@@ -248,18 +249,12 @@ foreach ($sections as $slug => $cfg) {
     $has  = false;
     if ($type === 'simple') {
         $has = hasVideos($cfg['data']);
-    } elseif ($type === 'glossaire' || $type === 'ai') {
-        foreach ($cfg['sub'] as $arr) {
-            if (hasVideos($arr)) { $has = true; break; }
-        }
+    } else {
+        foreach ($cfg['sub'] as $arr) { if (hasVideos($arr)) { $has = true; break; } }
     }
-    // 'agile-scale' => on crée index.html quoi qu'il arrive
-    if ($slug === 'agile-scale' || $has) {
-        $pagesToGenerate[$slug] = true;
-    }
+    if ($slug === 'agile-scale' || $has) { $pagesToGenerate[$slug] = true; }
 }
 
-// Nav : inclure seulement les sections qui auront une page
 $navItems = [];
 foreach ($sections as $slug => $cfg) {
     if (!isset($pagesToGenerate[$slug])) continue;
@@ -277,69 +272,50 @@ function sectionBlockHtml(string $title, array $ids): string {
     $html .= '<div class="section-body">';
     $html .= "<!--\n  <p class=\"note\">Commentaire court sur \"".e($title)."\".</p>\n  <ul class=\"links\">\n    <li><a href=\"#\">Lien utile</a></li>\n  </ul>\n-->\n";
     $grid = gridHtml($ids);
-    if ($grid === '') {
-        $html .= '<p class="note">Aucune vidéo pour le moment.</p>';
-    } else {
-        $html .= $grid;
-    }
+    $html .= ($grid === '') ? '<p class="note">Aucune vidéo pour le moment.</p>' : $grid;
     $html .= '</div></section>';
     return $html;
 }
-
 function glossairePageBody(array $sub): string {
-    $html  = '<section>';
-    $html .= '<div class="section-head"><h2>Glossaire de l\'agilité</h2></div>';
-    $html .= '</section>';
+    $html  = '<section><div class="section-head"><h2>Glossaire de l\'agilité</h2></div></section>';
     foreach ($sub as $label => $ids) {
         if (!hasVideos($ids)) continue;
         $html .= '<div class="subsection"><h3>'.e($label).'</h3><div class="section-body">';
         $html .= "<!--\n  <p class=\"note\">Commentaire court pour \"".e($label)."\".</p>\n  <ul class=\"links\">\n    <li><a href=\"#\">Lien</a></li>\n  </ul>\n-->\n";
-        $html .= gridHtml($ids);
-        $html .= '</div></div>';
+        $html .= gridHtml($ids) . '</div></div>';
     }
     return $html;
 }
-
 function aiPageBody(array $sub): string {
-    $html  = '<section>';
-    $html .= '<div class="section-head"><h2>Agilité et IA</h2></div>';
-    $html .= '</section>';
+    $html  = '<section><div class="section-head"><h2>Agilité et IA</h2></div></section>';
     foreach ($sub as $label => $ids) {
         if (!hasVideos($ids)) continue;
         $html .= '<div class="subsection"><h3>'.e($label).'</h3><div class="section-body">';
         $html .= "<!--\n  <p class=\"note\">Commentaire court pour \"".e($label)."\".</p>\n  <ul class=\"links\">\n    <li><a href=\"#\">Lien</a></li>\n  </ul>\n-->\n";
-        $html .= gridHtml($ids);
-        $html .= '</div></div>';
+        $html .= gridHtml($ids) . '</div></div>';
     }
     return $html;
 }
 
-// Générer les fichiers
+/* Écriture des fichiers */
 $written = [];
-
 foreach ($sections as $slug => $cfg) {
     if (!isset($pagesToGenerate[$slug])) continue;
 
     $filename = ($slug === 'agile-scale') ? 'index.html' : $cfg['filename'];
-    $body = '';
-
     if ($cfg['type'] === 'simple') {
         $body = sectionBlockHtml($cfg['title'], $cfg['data']);
     } elseif ($cfg['type'] === 'glossaire') {
         $body = glossairePageBody($cfg['sub']);
-    } elseif ($cfg['type'] === 'ai') {
+    } else {
         $body = aiPageBody($cfg['sub']);
     }
 
     $html = pageShell($slug, $cfg['title'], $body, $navItems);
-
     $path = __DIR__ . '/' . $filename;
     if (file_put_contents($path, $html) === false) {
-        fwrite(STDERR, "Erreur: impossible d'écrire $filename\n");
-        exit(1);
+        fwrite(STDERR, "Erreur: impossible d'écrire $filename\n"); exit(1);
     }
     $written[] = $filename;
 }
-
-/* Log minimal */
 echo "Généré : ".implode(', ', $written)."\n";

@@ -65,14 +65,14 @@ $ai_benchmark         = [
 	['id'=>'dcxUaeH-z4Y ', 'text'=>'On teste ChatGPT, CLaude et Gemini sur 3 questions d\'agilité basiques'],
 	['id'=>'0Fg0-ufPo_c ', 'text'=>'On essaye pour la première fois de faire générer des templates de rétrospectives agiles par ChatGPT, Claude et Gemini'],
 	['id'=>'QimIFnkOCA4 ', 'text'=>'On teste ChatGPT, Claude et Gemini sur des questions relatives à la gestion de confits classiques agiles'],
-	['id'=>'', 'text'=>''],
-	['id'=>'', 'text'=>''],
+	['id'=>'xX4FqB3eo1c', 'text'=>'On teste Perplexity pour la première fois, sur nos questions d\'agilité classiques'],
+	['id'=>'', 'text'=>'On teste ChatGPT, Claude, Gemini et Perplexity sur une question piège (comparer la performance de deux équipes agiles)'],
 	['id'=>'', 'text'=>''],
 	['id'=>'', 'text'=>''],
 	['id'=>'', 'text'=>'']
 ];
 $ai_reflexion         = [
-	['id'=>'', 'text'=>''],
+	['id'=>'sCOcG4XvHiI', 'text'=>'L\IA fait-elle gagner du temps ?'],
 	['id'=>'', 'text'=>''],
 	['id'=>'', 'text'=>''],
 	['id'=>'', 'text'=>''],
@@ -105,7 +105,7 @@ $ai_retro_templates   = [
 	['id'=>'', 'text'=>'']
 ];
 $ai_synthese          = [
-	['id'=>'', 'text'=>''],
+	['id'=>'7MEj3jMiVic', 'text'=>'Je montre commen ChatGPT, Claude et Gemini peuvent générer des Release Notes à partir d\'un fichier gitlog'],
 	['id'=>'', 'text'=>''],
 	['id'=>'', 'text'=>''],
 	['id'=>'', 'text'=>''],
