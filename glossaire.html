@@ -23,9 +23,9 @@
     .wrap{max-width:var(--maxw);margin-inline:auto;padding:24px}
     header{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:saturate(140%) blur(8px);z-index:10;border-bottom:1px solid var(--border)}
     header .wrap{display:flex;gap:12px;align-items:center;justify-content:space-between;padding-block:12px}
-    .title{font-weight:700;letter-spacing:.2px}
+    .title{font-weight:700;letter-spacing:.2px;white-space:nowrap}
 
-    /* Nav : visible mobile, scroll horizontal */
+    /* Nav visible mobile : scroll horizontal */
     nav{display:flex;flex-wrap:nowrap;gap:10px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
     nav::-webkit-scrollbar{display:none}
     nav a{
@@ -70,8 +70,26 @@
 
     footer{color:var(--muted);text-align:center;margin:32px 0 50px}
 
-    /* Mobile tweaks */
-    @media (max-width:480px){
+    /* --- Améliorations mobile --- */
+    @media (max-width:900px){
+      /* Titre sur sa propre ligne, menu en dessous */
+      header .wrap{flex-direction:column;align-items:flex-start;gap:8px}
+      .title{font-size:1.1rem}
+      nav{width:100%}
+    }
+    @media (max-width:600px){
+      /* Sous-sections plus visibles */
+      .subsection h3{
+        display:inline-block;
+        font-size:1.2rem;
+        font-weight:700;
+        background:#eaf1ff;
+        color:#153a8a;
+        padding:8px 12px;
+        border-radius:12px;
+        border:1px solid #c9d6ff;
+        margin:6px 0 4px;
+      }
       .wrap{padding:16px}
     }</style>
 </head>
@@ -104,7 +122,7 @@
   </ul>
 -->
 <div class="grid"><div class="tile">  <div class="video"><iframe loading="lazy" src="https://www.youtube.com/embed/5uNde1yFawk" title="YouTube video" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></div><div class="tile">  <div class="video"><iframe loading="lazy" src="https://www.youtube.com/embed/5TeeNfOffDc" title="YouTube video" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></div><div class="tile">  <div class="video"><iframe loading="lazy" src="https://www.youtube.com/embed/6jSZZ4XTcmg" title="YouTube video" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></div><div class="tile">  <div class="video"><iframe loading="lazy" src="https://www.youtube.com/embed/WknLX4DEs1k" title="YouTube video" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></div></div></div></div>
-    <footer>© Agile Toolkit — Pages statiques HTML/CSS générées par PHP.</footer>
+    <footer>© Agile Toolkit — Pages statiques HTML/CSS générées par PHP · Généré le 07/09/2025 22:22</footer>
   </main>
 </body>
 </html>

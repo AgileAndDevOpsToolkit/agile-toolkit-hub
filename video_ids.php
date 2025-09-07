@@ -24,6 +24,7 @@ $agile_scale = [
 ];
 
 $retrospectives   = [
+	['id'=>'wSJGMRr9vmw', 'text'=>'Je donne la méthode pour arriver générer des templates de rétrospective agile avec ChatGPT et Claude'],
 	['id'=>'TzaGwyiHA0A ', 'text'=>'Tuto : la rétrospective agile la plus simple.'],
 	['id'=>'MDRCbKRLNag ', 'text'=>'Tuto : La rétro \'Positif/Négatif\''],
 	['id'=>'tAPmKfrH7oE ', 'text'=>'Tuto : Comment dessiner ses templates de rétrospective avec ChatGPT ?'],
@@ -66,15 +67,19 @@ $ai_benchmark         = [
 	['id'=>'0Fg0-ufPo_c ', 'text'=>'On essaye pour la première fois de faire générer des templates de rétrospectives agiles par ChatGPT, Claude et Gemini'],
 	['id'=>'QimIFnkOCA4 ', 'text'=>'On teste ChatGPT, Claude et Gemini sur des questions relatives à la gestion de confits classiques agiles'],
 	['id'=>'xX4FqB3eo1c', 'text'=>'On teste Perplexity pour la première fois, sur nos questions d\'agilité classiques'],
-	['id'=>'', 'text'=>'On teste ChatGPT, Claude, Gemini et Perplexity sur une question piège (comparer la performance de deux équipes agiles)'],
-	['id'=>'', 'text'=>''],
-	['id'=>'', 'text'=>''],
-	['id'=>'', 'text'=>'']
+	['id'=>'e-WzAmTcbH0', 'text'=>'On teste ChatGPT, Claude, Gemini et Perplexity sur une question piège (comparer la performance de deux équipes agiles)'],
+	['id'=>'8m3mw_AJC3g', 'text'=>'On teste ChatGPT, Claude, Gemini et Perplexity sur une question piège (une équipe qui a trop de PI objectives)'],
+	['id'=>'Jg0Mlvs6oMY', 'text'=>'On teste DeepSeek pour la première fois, sur nos questions d\'agilité classiques'],
+	['id'=>'OnPn_DEiu8A', 'text'=>'Résumé de tous les tests \'Agilité et IA\' déjà réalisés sur la chaîne et annonce des prochains tests'],
+	['id'=>'WndMc3zyslU', 'text'=>'On teste Mistral (l\'IA made in France) pour la première fois, sur nos questions d\'agilité classiques'],
+	['id'=>'KjQoTN35vx0', 'text'=>'On teste DeepSeek et Mistral sur les questions piège de l\'agilité'],
+	['id'=>'VBl8HD9fmEU', 'text'=>'On teste Grok sur les questions d\agilité classiques'],
+	['id'=>'2-N4yXsxI6k', 'text'=>'On teste Grok et Llama 3.2 en local sur les questions pièges de l\'agilité']
 ];
 $ai_reflexion         = [
 	['id'=>'sCOcG4XvHiI', 'text'=>'L\IA fait-elle gagner du temps ?'],
-	['id'=>'', 'text'=>''],
-	['id'=>'', 'text'=>''],
+	['id'=>'RkGns4peGZo', 'text'=>'Pourquoi il faut s\'intéresser à l\'IA lorsque l\'on fait de la gestion de projet en général (et de l\'agilité en particulier) ?'],
+	['id'=>'sYr-MnXurUY', 'text'=>'Description des Use Cases agiles pour lesquels l\'IA est efficace et rend service'],
 	['id'=>'', 'text'=>''],
 	['id'=>'', 'text'=>''],
 	['id'=>'', 'text'=>''],
@@ -106,9 +111,10 @@ $ai_retro_templates   = [
 ];
 $ai_synthese          = [
 	['id'=>'7MEj3jMiVic', 'text'=>'Je montre commen ChatGPT, Claude et Gemini peuvent générer des Release Notes à partir d\'un fichier gitlog'],
-	['id'=>'', 'text'=>''],
-	['id'=>'', 'text'=>''],
-	['id'=>'', 'text'=>''],
+	['id'=>'XaUYdbCj6UM', 'text'=>'On demande à l\'IA de générer les slides d\'une présentation. On teste ChatGPT et Gamma, une IA spécialisée dans la génération de présentations'],
+	['id'=>'Ea3jXVh72RA', 'text'=>'On fait générer le contenu de slides par ChatGPT et je montre comment poser la question et copier/coller rapidement le résultat dans Google Slides'],
+	['id'=>'wSJGMRr9vmw', 'text'=>'Je donne la méthode pour arriver générer des templates de rétrospective agile avec ChatGPT et Claude'],
+	['id'=>'tAPmKfrH7oE ', 'text'=>'Tuto : Comment dessiner ses templates de rétrospective avec ChatGPT ?'],
 	['id'=>'', 'text'=>''],
 	['id'=>'', 'text'=>''],
 	['id'=>'', 'text'=>''],
@@ -116,7 +122,7 @@ $ai_synthese          = [
 	['id'=>'', 'text'=>'']
 ];
 $ai_presentation_docs = [
-	['id'=>'', 'text'=>''],
+	['id'=>'_WVWZ93FaSI', 'text'=>'ChatGPT présente les slides d\'une review à l\'oral (synthèse vocale, text to speech)'],
 	['id'=>'', 'text'=>''],
 	['id'=>'', 'text'=>''],
 	['id'=>'', 'text'=>''],
@@ -127,7 +133,7 @@ $ai_presentation_docs = [
 	['id'=>'', 'text'=>'']
 ];
 $ai_locale            = [
-	['id'=>'', 'text'=>''],
+	['id'=>'qhCH237rC9c', 'text'=>'On installe Ollama en local et on teste le modèle Llama 3.2 sur les questions d\'agilité classiques'],
 	['id'=>'', 'text'=>''],
 	['id'=>'', 'text'=>''],
 	['id'=>'', 'text'=>''],
@@ -138,7 +144,7 @@ $ai_locale            = [
 	['id'=>'', 'text'=>'']
 ];
 $ai_custom_gpts       = [
-	['id'=>'', 'text'=>''],
+	['id'=>'yUjk4CKtBpw', 'text'=>'J\exeplique et je fais une démo du concept de Custom GPT'],
 	['id'=>'', 'text'=>''],
 	['id'=>'', 'text'=>''],
 	['id'=>'', 'text'=>''],
@@ -160,7 +166,7 @@ $ai_vibe_coding       = [
 	['id'=>'', 'text'=>'']
 ];
 $ai_speech_to_text    = [
-	['id'=>'', 'text'=>''],
+	['id'=>'RFOYhx8D0jM', 'text'=>'Démonstration de la fonctionnalité de Speech to Text (reconaissance vocale) de ChatGPT'],
 	['id'=>'', 'text'=>''],
 	['id'=>'', 'text'=>''],
 	['id'=>'', 'text'=>''],

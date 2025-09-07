@@ -35,7 +35,6 @@ function normalizeVideos(array $arr): array {
     }
     return $out;
 }
-
 function hasVideos(array $arr): bool { return count(normalizeVideos($arr)) > 0; }
 
 function gridHtml(array $ids): string {
@@ -75,9 +74,9 @@ function cssStyles(): string {
     .wrap{max-width:var(--maxw);margin-inline:auto;padding:24px}
     header{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:saturate(140%) blur(8px);z-index:10;border-bottom:1px solid var(--border)}
     header .wrap{display:flex;gap:12px;align-items:center;justify-content:space-between;padding-block:12px}
-    .title{font-weight:700;letter-spacing:.2px}
+    .title{font-weight:700;letter-spacing:.2px;white-space:nowrap}
 
-    /* Nav : visible mobile, scroll horizontal */
+    /* Nav visible mobile : scroll horizontal */
     nav{display:flex;flex-wrap:nowrap;gap:10px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
     nav::-webkit-scrollbar{display:none}
     nav a{
@@ -122,8 +121,26 @@ function cssStyles(): string {
 
     footer{color:var(--muted);text-align:center;margin:32px 0 50px}
 
-    /* Mobile tweaks */
-    @media (max-width:480px){
+    /* --- Améliorations mobile --- */
+    @media (max-width:900px){
+      /* Titre sur sa propre ligne, menu en dessous */
+      header .wrap{flex-direction:column;align-items:flex-start;gap:8px}
+      .title{font-size:1.1rem}
+      nav{width:100%}
+    }
+    @media (max-width:600px){
+      /* Sous-sections plus visibles */
+      .subsection h3{
+        display:inline-block;
+        font-size:1.2rem;
+        font-weight:700;
+        background:#eaf1ff;
+        color:#153a8a;
+        padding:8px 12px;
+        border-radius:12px;
+        border:1px solid #c9d6ff;
+        margin:6px 0 4px;
+      }
       .wrap{padding:16px}
     }
 CSS;
@@ -138,7 +155,7 @@ function navHtml(array $navItems, string $currentSlug): string {
     return implode("\n        ", $links);
 }
 
-function pageShell(string $currentSlug, string $pageTitle, string $mainHtml, array $navItems): string {
+function pageShell(string $currentSlug, string $pageTitle, string $mainHtml, array $navItems, string $generatedAt): string {
     $nav = navHtml($navItems, $currentSlug);
     $css = cssStyles();
     $docTitle = 'Agile Toolkit Hub — ' . $pageTitle; // <title>
@@ -162,7 +179,7 @@ function pageShell(string $currentSlug, string $pageTitle, string $mainHtml, arr
   </header>
   <main class="wrap">
     '.$mainHtml.'
-    <footer>© Agile Toolkit — Pages statiques HTML/CSS générées par PHP.</footer>
+    <footer>© Agile Toolkit — Pages statiques HTML/CSS générées par PHP · Généré le '.e($generatedAt).'</footer>
   </main>
 </body>
 </html>';
@@ -240,7 +257,7 @@ $sections = [
 ];
 
 /* =======================
- * Quelles pages générer + nav
+ * Pages à générer + nav
  * ======================= */
 
 $pagesToGenerate = [];
@@ -299,6 +316,8 @@ function aiPageBody(array $sub): string {
 
 /* Écriture des fichiers */
 $written = [];
+$generatedAt = date('d/m/Y H:i');
+
 foreach ($sections as $slug => $cfg) {
     if (!isset($pagesToGenerate[$slug])) continue;
 
@@ -311,11 +330,12 @@ foreach ($sections as $slug => $cfg) {
         $body = aiPageBody($cfg['sub']);
     }
 
-    $html = pageShell($slug, $cfg['title'], $body, $navItems);
+    $html = pageShell($slug, $cfg['title'], $body, $navItems, $generatedAt);
     $path = __DIR__ . '/' . $filename;
     if (file_put_contents($path, $html) === false) {
         fwrite(STDERR, "Erreur: impossible d'écrire $filename\n"); exit(1);
     }
     $written[] = $filename;
 }
-echo "Généré : ".implode(', ', $written)."\n";
+
+echo "Généré : ".implode(', ', $written)." (".$generatedAt.")\n";
