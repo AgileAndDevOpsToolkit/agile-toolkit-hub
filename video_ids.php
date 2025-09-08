@@ -15,8 +15,8 @@
 $agile_scale = [
   ['id'=>'nEcQbNEdYTQ', 'text'=>'Histoire de l\'agilité'],
   ['id'=>'QoZb9bjj3SI', 'text'=>'Pourquoi l\'échelle ? De Scrum à SAFe'],
-  ['id'=>'7OA3USnZ3TU',    'text'=>'SAFe - Introducion & niveaux'],
-  ['id'=>'DE9Un87qRLY ', 'text'=>'SAFe - Itérations & PI'],
+  ['id'=>'oeHS2HAHXl8',    'text'=>'SAFe - Introducion & niveaux'],
+  ['id'=>'DE9Un87qRLY', 'text'=>'SAFe - Itérations & PI'],
   ['id'=>'oeHS2HAHXl8',   'text'=>'SAFe - Les rôles du niveau Train'],
   ['id'=>'WHBSGK3s33c',   'text'=>'SAFe - Organisation des équipes (topologie) : Component Team et Feature Team'],
   ['id'=>'rdExBxwMUs8',  'text'=>'SAFe - User Stories, Features, Capabilities'],
