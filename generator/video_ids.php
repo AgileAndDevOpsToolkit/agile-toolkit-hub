@@ -15,7 +15,9 @@
 $home = [
 	'intro_html' => '',
 	'videos' => [
-		['id'=>'nEcQbNEdYTQ', 'text'=>'Histoire de l\'agilité'],
+		['id'=>'MDLbvJp229I', 'text'=>'Je fais 6 prédictions sur les évolutions à 10 ans apportées par l\'IA'],
+		['id'=>'oM9IVh89dhg', 'text'=>'Générer des diagrammes de classes et les versionner dans GitHub automatiquement grâce à Mermaid et ChatGPT'],
+		['id'=>'DOIwOiOvyv8', 'text'=>'Vidéo anniversaire 1 an de la chaîne'],
 	],
 ];
 
@@ -73,6 +75,7 @@ $devops           = [
 	'videos' => [
 		['id'=>'7MEj3jMiVic', 'text'=>'Je montre commen ChatGPT, Claude et Gemini peuvent générer des Release Notes à partir d\'un fichier gitlog'],
 		['id'=>'ugj44kHM8HI', 'text'=>'Comment héberfer un petit site web  directement sur Github ?'],
+		['id'=>'oM9IVh89dhg', 'text'=>'Générer des diagrammes de classes et les versionner dans GitHub automatiquement grâce à Mermaid et ChatGPT'],
 		['id'=>'', 'text'=>'']
 	],
 ];
@@ -120,7 +123,7 @@ $ai_reflexion         = [
 		['id'=>'sYr-MnXurUY', 'text'=>'Description des Use Cases agiles pour lesquels l\'IA est efficace et rend service'],
 		['id'=>'1pKth1Mk3Ss', 'text'=>'On crée un Custom GPT permettant de créer des templates de rétrospective à volonté et on se livre à une rélexion sur cette nouvelle pratique qu\'on peut assimiler à une nouvelle forme de développement informatique'],
 		['id'=>'-sld7tBoCaQ', 'text'=>'J\'explique pourquoi ce que produit l\'IA n\'est jamais parfait et nécessite toujours des retouches'],
-		['id'=>'', 'text'=>''],
+		['id'=>'MDLbvJp229I', 'text'=>'Je fais 6 prédictions sur les évolutions à 10 ans apportées par l\'IA'],
 		['id'=>'', 'text'=>''],
 		['id'=>'', 'text'=>''],
 		['id'=>'', 'text'=>''],
@@ -146,9 +149,10 @@ $ai_essentiels        = [
 		['id'=>'a7AkWmHmD3U', 'text'=>'On teste Llama 3.3 en local avec Ollama. Llama 3.3 est le plus gros LLM que je peux tester sur mon PC (70 milliards de paramètres)'],
 		['id'=>'KoXADH7j7aA', 'text'=>'Vibe Coding : on code une application de quiz avec ChatGPT et en utilisant le Speech to Text (Synthèse vocale)'],
 		['id'=>'o4GNGGG7Op4', 'text'=>'Je génère le diagramme de classes Mermaid d\'une application à l\'aide de ChatGPT, à partir d\'un dump SQL de la structure de base de données, ou bien des fichiers Entity de l\'application'],
-		['id'=>'1pKth1Mk3Ss ', 'text'=>'L\'usine à rétros : je crée un Custom GPT qui génère des templates de rétrospectives à la demande'],
+		['id'=>'1pKth1Mk3Ss', 'text'=>'L\'usine à rétros : je crée un Custom GPT qui génère des templates de rétrospectives à la demande'],
 		['id'=>'MalpJyAwsiI', 'text'=>'J\'explique ce qu\'est une API et j\'explique la particularité des APIs de LLM. Je fait une petite démostration de call API à l\'API ChatGPT'],
 		['id'=>'-sld7tBoCaQ', 'text'=>'J\'explique pourquoi ce que produit l\'IA n\'est jamais parfait et nécessite toujours des retouches'],
+		['id'=>'MDLbvJp229I', 'text'=>'Je fais 6 prédictions sur les évolutions à 10 ans apportées par l\'IA'],
 		['id'=>'', 'text'=>'']
 	],
 ];
@@ -265,5 +269,12 @@ $ai_apis_llm          = [
 		['id'=>'', 'text'=>''],
 		['id'=>'', 'text'=>''],
 		['id'=>'', 'text'=>'']
+	],
+];
+
+$specials         = [
+	'intro_html' => '',
+	'videos' => [
+		['id'=>'DOIwOiOvyv8', 'text'=>'Vidéo anniversaire 1 an de la chaîne'],
 	],
 ];

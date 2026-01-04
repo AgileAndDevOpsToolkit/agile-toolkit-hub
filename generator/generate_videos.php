@@ -136,7 +136,7 @@ $sections = [
         'filename' => 'agile-a-lechelle.html',
     ],
     'retrospectives' => [
-        'label' => 'Rétrospectives',
+        'label' => 'Rétros',
         'title' => 'Rétrospectives',
         'type'  => 'simple',
         'data'  => $retrospectives,
@@ -192,6 +192,13 @@ $sections = [
         ],
         'filename' => 'agilite-ia.html',
     ],
+    'specials' => [
+        'label' => 'Specials',
+        'title' => 'Specials',
+        'type'  => 'simple',
+        'data'  => $specials,
+        'filename' => 'specials.html',
+    ],
 ];
 
 /* =======================
@@ -207,7 +214,7 @@ foreach ($sections as $slug => $cfg) {
     } else {
         foreach ($cfg['sub'] as $arr) { if (hasVideos($arr)) { $has = true; break; } }
     }
-    if ($slug === 'home' || $slug === 'agile-scale' || $has) { $pagesToGenerate[$slug] = true; }
+    if ($slug === 'home' || $slug === 'agile-scale' || $slug === 'specials' || $has) { $pagesToGenerate[$slug] = true; }
 }
 
 $navItems = [];
