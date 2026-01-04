@@ -5,10 +5,14 @@
  * - Une page par section est générée uniquement si elle contient des vidéos.
  * - Les sous-sections vides sont masquées.
  *
- * Usage : php generate_videos.php
+ * Usage : php generate_videos.php (depuis la racine du dépôt)
+ * Sortie : ../ (racine du dépôt, servie par GitHub Pages configurée sur la racine)
  */
 
 require __DIR__ . '/video_ids.php';
+
+// Dossier de sortie : racine du dépôt (GitHub Pages configuré sur la racine)
+$outputDir = realpath(__DIR__ . '/..') ?: (__DIR__ . '/..');
 
 /* =======================
  * Utils
@@ -331,7 +335,7 @@ foreach ($sections as $slug => $cfg) {
     }
 
     $html = pageShell($slug, $cfg['title'], $body, $navItems, $generatedAt);
-    $path = __DIR__ . '/' . $filename;
+    $path = $outputDir . '/' . $filename;
     if (file_put_contents($path, $html) === false) {
         fwrite(STDERR, "Erreur: impossible d'écrire $filename\n"); exit(1);
     }

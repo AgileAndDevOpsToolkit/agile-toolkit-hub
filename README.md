@@ -24,16 +24,17 @@ Les identifiants des vidéos sont maintenus dans un fichier PHP séparé, puis u
 
 ```
 .
-├── generate_videos.php        # Générateur (écrit/écrase les pages HTML)
-├── video_ids.php              # Données: listes d'IDs + texte optionnel par vidéo
+├── README.md
+├── generator/                 # Scripts et données de génération
+│   ├── generate_videos.php    # Générateur (écrit/écrase les pages HTML)
+│   └── video_ids.php          # Listes d'IDs + texte optionnel par vidéo
 ├── index.html                 # Accueil (Agilité à l'Échelle)
 ├── retrospectives.html        # (créé si section non vide)
 ├── demos.html                 # (créé si section non vide)
 ├── questions-agiles.html      # (créé si section non vide)
 ├── devops.html                # (créé si section non vide)
 ├── glossaire.html             # (créé si au moins une sous-section non vide)
-├── agilite-ia.html            # (créé si au moins une sous-section non vide)
-└── README.md
+└── agilite-ia.html            # (créé si au moins une sous-section non vide)
 ```
 
 > **Remarque :** seules les pages dont les sections contiennent des vidéos sont générées (sauf `index.html`, toujours créé).
@@ -64,14 +65,18 @@ Chaque vidéo peut être déclarée selon **deux formats** :
 Prérequis : **PHP (CLI)** installé.
 
 ```bash
-php generate_videos.php
+php generator/generate_videos.php
 ```
-Le script crée/écrase :
+Le script crée/écrase les fichiers html à la **racine du dépôt** :
 
 - `index.html` (toujours)
 - et, si contenu présent, `retrospectives.html`, `demos.html`, `questions-agiles.html`, `devops.html`, `glossaire.html`, `agilite-ia.html`
 
 Ensuite, ouvrir `index.html` localement pour prévisualiser, puis **commit/push** les fichiers HTML générés.
+
+### Publication GitHub Pages
+
+Dans la configuration GitHub Pages, définir la source sur **Deploy from a branch** puis **`main` / `(root)`**. La racine du site reste la racine du dépôt.
 
 ---
 
@@ -92,5 +97,5 @@ Ensuite, ouvrir `index.html` localement pour prévisualiser, puis **commit/push*
 
 ## ✅ Bonnes pratiques
 
-- Éditer uniquement `video_ids.php`, lancer `php generate_videos.php`, puis **commit/push** `index.html` **et** toutes les pages HTML générées.
+- Éditer uniquement `generator/video_ids.php`, lancer `php generator/generate_videos.php`, puis **commit/push** `index.html` **et** toutes les pages HTML générées.
 - Vérifier que tes IDs sont bien les codes après `v=` ou `/embed/` (ex. `dQw4w9WgXcQ`).
