@@ -14,6 +14,12 @@ require __DIR__ . '/video_ids.php';
 // Dossier de sortie : racine du dépôt (GitHub Pages configuré sur la racine)
 $outputDir = realpath(__DIR__ . '/..') ?: (__DIR__ . '/..');
 
+// Footer commun (chargé depuis includes/footer.html pour éviter la duplication)
+$footerPath = realpath(__DIR__ . '/../includes/footer.html');
+$footerHtml = ($footerPath && is_file($footerPath))
+    ? file_get_contents($footerPath)
+    : '<footer>© Agile Toolkit — Pages statiques HTML/CSS générées par PHP</footer>';
+
 /* =======================
  * Utils
  * ======================= */
@@ -160,7 +166,7 @@ function navHtml(array $navItems, string $currentSlug): string {
     return implode("\n        ", $links);
 }
 
-function pageShell(string $currentSlug, string $pageTitle, string $mainHtml, array $navItems, string $generatedAt): string {
+function pageShell(string $currentSlug, string $pageTitle, string $mainHtml, array $navItems, string $generatedAt, string $footerHtml): string {
     $nav = navHtml($navItems, $currentSlug);
     $css = cssStyles();
     $docTitle = 'Agile Toolkit Hub — ' . $pageTitle; // <title>
@@ -183,8 +189,8 @@ function pageShell(string $currentSlug, string $pageTitle, string $mainHtml, arr
     </div>
   </header>
   <main class="wrap">
-    '.$mainHtml.'
-    <footer>© Agile Toolkit — Pages statiques HTML/CSS générées par PHP · Généré le '.e($generatedAt).'</footer>
+        '.$mainHtml.'
+        '.str_replace('{generated_at}', e($generatedAt), $footerHtml).'
   </main>
 </body>
 </html>';
@@ -335,7 +341,7 @@ foreach ($sections as $slug => $cfg) {
         $body = aiPageBody($cfg['sub']);
     }
 
-    $html = pageShell($slug, $cfg['title'], $body, $navItems, $generatedAt);
+    $html = pageShell($slug, $cfg['title'], $body, $navItems, $generatedAt, $footerHtml);
     $path = $outputDir . '/' . $filename;
     if (file_put_contents($path, $html) === false) {
         fwrite(STDERR, "Erreur: impossible d'écrire $filename\n"); exit(1);

@@ -28,6 +28,8 @@ Les identifiants des vidéos sont maintenus dans un fichier PHP séparé, puis u
 ├── generator/                 # Scripts et données de génération
 │   ├── generate_videos.php    # Générateur (écrit/écrase les pages HTML)
 │   └── video_ids.php          # Listes d'IDs + texte optionnel par vidéo
+├── includes/
+│   └── footer.html            # Footer commun inclus lors de la génération
 ├── index.html                 # Accueil (Agilité à l'Échelle)
 ├── retrospectives.html        # (créé si section non vide)
 ├── demos.html                 # (créé si section non vide)
@@ -97,5 +99,5 @@ Dans la configuration GitHub Pages, définir la source sur **Deploy from a branc
 
 ## ✅ Bonnes pratiques
 
-- Éditer uniquement `generator/video_ids.php`, lancer `php generator/generate_videos.php`, puis **commit/push** `index.html` **et** toutes les pages HTML générées.
+- Éditer uniquement `generator/video_ids.php`, lancer `php generator/generate_videos.php`, puis **commit/push** `index.html` **et** toutes les pages HTML générées. Le footer partagé est dans `includes/footer.html`.
 - Vérifier que tes IDs sont bien les codes après `v=` ou `/embed/` (ex. `dQw4w9WgXcQ`).
