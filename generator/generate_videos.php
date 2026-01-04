@@ -45,7 +45,21 @@ function normalizeVideos(array $arr): array {
     }
     return $out;
 }
-function hasVideos(array $arr): bool { return count(normalizeVideos($arr)) > 0; }
+
+function videosFromSection($data): array {
+    // Accepte soit un tableau plat de vidéos, soit ['videos'=>[...]]
+    $raw = (is_array($data) && array_key_exists('videos', $data)) ? $data['videos'] : $data;
+    return is_array($raw) ? normalizeVideos($raw) : [];
+}
+
+function introFromSection($data): string {
+    if (!is_array($data)) return '';
+    if (isset($data['intro_html'])) return (string)$data['intro_html'];
+    if (isset($data['intro'])) return (string)$data['intro'];
+    return '';
+}
+
+function hasVideos($data): bool { return count(videosFromSection($data)) > 0; }
 
 function gridHtml(array $ids): string {
     $videos = normalizeVideos($ids);
@@ -294,11 +308,13 @@ foreach ($sections as $slug => $cfg) {
  * Rendu des pages
  * ======================= */
 
-function sectionBlockHtml(string $title, array $ids): string {
+function sectionBlockHtml(string $title, array $ids, string $introHtml = ''): string {
     $html  = '<section>';
     $html .= '<div class="section-head"><h2>'.e($title).'</h2></div>';
     $html .= '<div class="section-body">';
-    $html .= "<!--\n  <p class=\"note\">Commentaire court sur \"".e($title)."\".</p>\n  <ul class=\"links\">\n    <li><a href=\"#\">Lien utile</a></li>\n  </ul>\n-->\n";
+    if (trim($introHtml) !== '') {
+        $html .= '<p class="note intro">'.$introHtml.'</p>';
+    }
     $grid = gridHtml($ids);
     $html .= ($grid === '') ? '<p class="note">Aucune vidéo pour le moment.</p>' : $grid;
     $html .= '</div></section>';
@@ -310,7 +326,7 @@ function glossairePageBody(array $sub): string {
         if (!hasVideos($ids)) continue;
         $html .= '<div class="subsection"><h3>'.e($label).'</h3><div class="section-body">';
         $html .= "<!--\n  <p class=\"note\">Commentaire court pour \"".e($label)."\".</p>\n  <ul class=\"links\">\n    <li><a href=\"#\">Lien</a></li>\n  </ul>\n-->\n";
-        $html .= gridHtml($ids) . '</div></div>';
+        $html .= gridHtml(videosFromSection($ids)) . '</div></div>';
     }
     return $html;
 }
@@ -320,7 +336,7 @@ function aiPageBody(array $sub): string {
         if (!hasVideos($ids)) continue;
         $html .= '<div class="subsection"><h3>'.e($label).'</h3><div class="section-body">';
         $html .= "<!--\n  <p class=\"note\">Commentaire court pour \"".e($label)."\".</p>\n  <ul class=\"links\">\n    <li><a href=\"#\">Lien</a></li>\n  </ul>\n-->\n";
-        $html .= gridHtml($ids) . '</div></div>';
+        $html .= gridHtml(videosFromSection($ids)) . '</div></div>';
     }
     return $html;
 }
@@ -334,7 +350,11 @@ foreach ($sections as $slug => $cfg) {
 
     $filename = ($slug === 'agile-scale') ? 'index.html' : $cfg['filename'];
     if ($cfg['type'] === 'simple') {
-        $body = sectionBlockHtml($cfg['title'], $cfg['data']);
+        $body = sectionBlockHtml(
+            $cfg['title'],
+            videosFromSection($cfg['data']),
+            introFromSection($cfg['data'])
+        );
     } elseif ($cfg['type'] === 'glossaire') {
         $body = glossairePageBody($cfg['sub']);
     } else {
