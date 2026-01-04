@@ -27,7 +27,7 @@ $agile_scale = [
 ];
 
 $retrospectives   = [
-	'intro_html' => 'Retrouvez tous les templates de rétrospective sur mon site : <a href="https://agileanddevopstoolkit.github.io/retro-templates/" target="_blank" rel="noopener">Retro Templates</a>.',
+	'intro_html' => '👉 Retrouvez tous les templates de rétrospective sur mon site : <a href="https://agileanddevopstoolkit.github.io/retro-templates/" target="_blank" rel="noopener">Retro Templates</a>.',
 	'videos' => [
 		['id'=>'wSJGMRr9vmw', 'text'=>'Je donne la méthode pour arriver générer des templates de rétrospective agile avec ChatGPT et Claude'],
 		['id'=>'TzaGwyiHA0A ', 'text'=>'Tuto : la rétrospective agile la plus simple.'],

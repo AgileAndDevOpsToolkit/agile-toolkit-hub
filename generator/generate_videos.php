@@ -123,6 +123,14 @@ function cssStyles(): string {
     .section-body{margin-top:10px}
     .subsection{margin-top:18px;padding-top:12px;border-top:1px dashed var(--border)}
     .note{margin:8px 0 0;color:var(--muted)}
+        .note.intro{
+            background:#fff8d6;
+            border:1px solid #f2e5a9;
+            border-radius:12px;
+            padding:12px 14px;
+            color:#4a3c1c;
+            box-shadow:0 6px 18px rgba(180,140,30,.08);
+        }
     .links{margin:6px 0 0 18px}
 
     /* Grille responsive : 3 cols desktop, 2 cols tablette, 1 col mobile */
