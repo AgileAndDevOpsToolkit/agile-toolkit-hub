@@ -5,7 +5,7 @@
  * - Une page par section est générée uniquement si elle contient des vidéos.
  * - Les sous-sections vides sont masquées.
  *
- * Usage : php generate_videos.php (depuis la racine du dépôt)
+ * Usage : php generate_videos.php
  * Sortie : ../ (racine du dépôt, servie par GitHub Pages configurée sur la racine)
  */
 
@@ -78,7 +78,8 @@ function cssStyles(): string {
     .wrap{max-width:var(--maxw);margin-inline:auto;padding:24px}
     header{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:saturate(140%) blur(8px);z-index:10;border-bottom:1px solid var(--border)}
     header .wrap{display:flex;gap:12px;align-items:center;justify-content:space-between;padding-block:12px}
-    .title{font-weight:700;letter-spacing:.2px;white-space:nowrap}
+    .title{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.2px;white-space:nowrap}
+    .title img{height:28px;width:28px;object-fit:contain;display:block}
 
     /* Nav visible mobile : scroll horizontal */
     nav{display:flex;flex-wrap:nowrap;gap:10px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
@@ -175,7 +176,7 @@ function pageShell(string $currentSlug, string $pageTitle, string $mainHtml, arr
 <body>
   <header>
     <div class="wrap">
-      <div class="title">🎬 Agile Toolkit Hub</div>
+    <div class="title"><img src="assets/hub_icon.png" alt="Logo Agile Toolkit" loading="lazy" />Agile Toolkit Hub</div>
       <nav aria-label="Sections">
         '.$nav.'
       </nav>
