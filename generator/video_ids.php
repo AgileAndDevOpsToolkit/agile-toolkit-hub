@@ -18,6 +18,18 @@ $home = [
 		['id'=>'MDLbvJp229I', 'text'=>'Je fais 6 prédictions sur les évolutions à 10 ans apportées par l\'IA'],
 		['id'=>'oM9IVh89dhg', 'text'=>'Générer des diagrammes de classes et les versionner dans GitHub automatiquement grâce à Mermaid et ChatGPT'],
 		['id'=>'DOIwOiOvyv8', 'text'=>'Vidéo anniversaire 1 an de la chaîne'],
+		['id'=>'7Gg44-PbNIQ', 'text'=>'Je présente ce site web Agile Toolkit Hub'],
+		['id'=>'3Nil-nXFUXc', 'text'=>'J\'explique pourquoi l\'IA ne progresse plus'],
+		['id'=>'K2VijLacVJQ', 'text'=>'Bingo Démo (pour réussir toutes vos démos'],
+		['id'=>'qNG42lR2wMc', 'text'=>'Tuto pour faire des calls API ChatGPT'],
+		['id'=>'U_o8g4ACgTk', 'text'=>'Tuto rétrospective Start/Stop/Continue'],
+		['id'=>'0wq97uCeKx4', 'text'=>'Je teste gpt-oss, le LLM libre d\'OpenAI (l\'éditeur de ChatGPT)'],
+		['id'=>'6G89qC8_jxQ', 'text'=>'3 façons dont l\'IA révolutionne la programmation'],
+		['id'=>'cHTKD-KoAko', 'text'=>'Mon retour d\'expérience sur la conférence Agile en Seine 2025'],
+		['id'=>'5LoHfpywsD0', 'text'=>'Je vous explique en quoi l\'IA est un nouveau paradigme de programmation'],
+		['id'=>'9Uns3D6nOjE', 'text'=>'Je vous propose une rétrospective sur le thème d\'Halloween'],
+		['id'=>'msbehMVDFeA', 'text'=>'On teste la reconnaissance vocale (Speech to Text) de toutes les IA'],
+		['id'=>'zofwz0iiaX8', 'text'=>'L\'IA génère des templates de rétrospectives sur le thème d\'Halloween'],
 	],
 ];
 
@@ -54,13 +66,18 @@ $retrospectives   = [
 		['id'=>'1pKth1Mk3Ss ', 'text'=>'L\'usine à rétros : je crée un Custom GPT qui génère des templates de rétrospectives à la demande'],
 		['id'=>'FPvt2BDKIpw ', 'text'=>'Je présente le fonctionnement de l\'Usine à Rétros : un Custom GPT qui génère des remplates de rétrospectives agiles à la demande'],
 		['id'=>'AjHxGwM5oYY ', 'text'=>'Tuto : je vous présente le format de rétro \'Carte Postale\''],
-		['id'=>'Rb33e-szups ', 'text'=>'Tuto : je crée une rétro sur le thème de la rentrée des classes']
+		['id'=>'Rb33e-szups ', 'text'=>'Tuto : je crée une rétro sur le thème de la rentrée des classes'],
+		['id'=>'U_o8g4ACgTk', 'text'=>'Tuto rétrospective Start/Stop/Continue'],
+		['id'=>'9Uns3D6nOjE', 'text'=>'Je vous propose une rétrospective sur le thème d\'Halloween'],
+		['id'=>'zofwz0iiaX8', 'text'=>'L\'IA génère des templates de rétrospectives sur le thème d\'Halloween'],
+
 	],
 ];
 $demos            = [
 	'intro_html' => '',
 	'videos' => [
-		['id'=>'ZOLOwiOJA0k', 'text'=>'3 Conseils pour réussir toutes vos démos']
+		['id'=>'ZOLOwiOJA0k', 'text'=>'3 Conseils pour réussir toutes vos démos'],
+		['id'=>'K2VijLacVJQ', 'text'=>'Bingo Démo (pour réussir toutes vos démos)'],
 	],
 ];
 $questions_agiles = [
@@ -112,7 +129,9 @@ $ai_benchmark         = [
 		['id'=>'VBl8HD9fmEU', 'text'=>'On teste Grok sur les questions d\agilité classiques'],
 		['id'=>'2-N4yXsxI6k', 'text'=>'On teste Grok et Llama 3.2 en local sur les questions pièges de l\'agilité'],
 		['id'=>'a7AkWmHmD3U', 'text'=>'On teste Llama 3.3 en local avec Ollama. Llama 3.3 est le plus gros LLM que je peux tester sur mon PC (70 milliards de paramètres)'],
-		['id'=>'WSED-zz4AXY', 'text'=>'On fait un classement de toutes les IA qu\'on a testées sur la chaîne : ChatGPT, Claude, Gemini, Perplexity, DeepSeek, Mistral, Gamma, Ollama et Grok']
+		['id'=>'WSED-zz4AXY', 'text'=>'On fait un classement de toutes les IA qu\'on a testées sur la chaîne : ChatGPT, Claude, Gemini, Perplexity, DeepSeek, Mistral, Gamma, Ollama et Grok'],
+		['id'=>'0wq97uCeKx4', 'text'=>'Je teste gpt-oss, le LLM libre d\'OpenAI (l\'éditeur de ChatGPT)'],
+		['id'=>'msbehMVDFeA', 'text'=>'On teste la reconnaissance vocale (Speech to Text) de toutes les IA'],
 	],
 ];
 $ai_reflexion         = [
@@ -124,8 +143,9 @@ $ai_reflexion         = [
 		['id'=>'1pKth1Mk3Ss', 'text'=>'On crée un Custom GPT permettant de créer des templates de rétrospective à volonté et on se livre à une rélexion sur cette nouvelle pratique qu\'on peut assimiler à une nouvelle forme de développement informatique'],
 		['id'=>'-sld7tBoCaQ', 'text'=>'J\'explique pourquoi ce que produit l\'IA n\'est jamais parfait et nécessite toujours des retouches'],
 		['id'=>'MDLbvJp229I', 'text'=>'Je fais 6 prédictions sur les évolutions à 10 ans apportées par l\'IA'],
-		['id'=>'', 'text'=>''],
-		['id'=>'', 'text'=>''],
+		['id'=>'3Nil-nXFUXc', 'text'=>'J\'explique pourquoi l\'IA ne progresse plus'],
+		['id'=>'6G89qC8_jxQ', 'text'=>'3 façons dont l\'IA révolutionne la programmation'],
+		['id'=>'5LoHfpywsD0', 'text'=>'Je vous explique en quoi l\'IA est un nouveau paradigme de programmation'],
 		['id'=>'', 'text'=>''],
 		['id'=>'', 'text'=>'']
 	],
@@ -153,6 +173,10 @@ $ai_essentiels        = [
 		['id'=>'MalpJyAwsiI', 'text'=>'J\'explique ce qu\'est une API et j\'explique la particularité des APIs de LLM. Je fait une petite démostration de call API à l\'API ChatGPT'],
 		['id'=>'-sld7tBoCaQ', 'text'=>'J\'explique pourquoi ce que produit l\'IA n\'est jamais parfait et nécessite toujours des retouches'],
 		['id'=>'MDLbvJp229I', 'text'=>'Je fais 6 prédictions sur les évolutions à 10 ans apportées par l\'IA'],
+		['id'=>'3Nil-nXFUXc', 'text'=>'J\'explique pourquoi l\'IA ne progresse plus'],
+		['id'=>'6G89qC8_jxQ', 'text'=>'3 façons dont l\'IA révolutionne la programmation'],
+		['id'=>'5LoHfpywsD0', 'text'=>'Je vous explique en quoi l\'IA est un nouveau paradigme de programmation'],
+		['id'=>'msbehMVDFeA', 'text'=>'On teste la reconnaissance vocale (Speech to Text) de toutes les IA'],
 		['id'=>'', 'text'=>'']
 	],
 ];
@@ -160,7 +184,7 @@ $ai_retro_templates   = [
 	'intro_html' => '',
 	'videos' => [
 		['id'=>'FI1OlBZ-HaE', 'text'=>'6 mois après notre premier test on refait un test de génération de templates de rétrospective avec ChatGPT, Claude et Gemini afin de voir si l\'IA a fait des progrès'],
-		['id'=>'', 'text'=>''],
+		['id'=>'zofwz0iiaX8', 'text'=>'L\'IA génère des templates de rétrospectives sur le thème d\'Halloween'],
 		['id'=>'', 'text'=>''],
 		['id'=>'', 'text'=>''],
 		['id'=>'', 'text'=>''],
@@ -261,7 +285,7 @@ $ai_apis_llm          = [
 	'intro_html' => '',
 	'videos' => [
 		['id'=>'MalpJyAwsiI', 'text'=>'J\'explique ce qu\'est une API et j\'explique la particularité des APIs de LLM. Je fait une petite démostration de call API à l\'API ChatGPT'],
-		['id'=>'', 'text'=>''],
+		['id'=>'qNG42lR2wMc', 'text'=>'Tuto pour faire des calls API ChatGPT'],
 		['id'=>'', 'text'=>''],
 		['id'=>'', 'text'=>''],
 		['id'=>'', 'text'=>''],
@@ -276,5 +300,7 @@ $specials         = [
 	'intro_html' => '',
 	'videos' => [
 		['id'=>'DOIwOiOvyv8', 'text'=>'Vidéo anniversaire 1 an de la chaîne'],
+		['id'=>'7Gg44-PbNIQ', 'text'=>'Je présente ce site web Agile Toolkit Hub'],
+		['id'=>'cHTKD-KoAko', 'text'=>'Mon retour d\'expérience sur la conférence Agile en Seine 2025'],
 	],
 ];
