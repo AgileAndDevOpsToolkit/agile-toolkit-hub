@@ -102,7 +102,7 @@ function pageShell(string $currentSlug, string $pageTitle, string $mainHtml, arr
 <body>
   <header>
     <div class="wrap">
-    <div class="title"><img src="assets/hub_icon.png" alt="Logo Agile Toolkit" loading="lazy" />Agile Toolkit Hub</div>
+        <a class="brand-btn" href="index.html"'.($currentSlug === 'home' ? ' aria-current="page"' : '').'><img src="assets/hub_icon.png" alt="Logo Agile Toolkit" loading="lazy" />Agile Toolkit Hub</a>
       <nav aria-label="Sections">
         '.$nav.'
       </nav>
@@ -121,12 +121,19 @@ function pageShell(string $currentSlug, string $pageTitle, string $mainHtml, arr
  * ======================= */
 
 $sections = [
+    'home' => [
+        'label' => 'Accueil',
+        'title' => 'Les dernières vidéos ajoutées',
+        'type'  => 'simple',
+        'data'  => $home,
+        'filename' => 'index.html', // page d'accueil
+    ],
     'agile-scale' => [
         'label' => "Agilité à l'Échelle",
         'title' => "Cours sur l'Agilité à l'Échelle",
         'type'  => 'simple',
         'data'  => $agile_scale,
-        'filename' => 'index.html', // page d'accueil
+        'filename' => 'agile-a-lechelle.html',
     ],
     'retrospectives' => [
         'label' => 'Rétrospectives',
@@ -200,13 +207,14 @@ foreach ($sections as $slug => $cfg) {
     } else {
         foreach ($cfg['sub'] as $arr) { if (hasVideos($arr)) { $has = true; break; } }
     }
-    if ($slug === 'agile-scale' || $has) { $pagesToGenerate[$slug] = true; }
+    if ($slug === 'home' || $slug === 'agile-scale' || $has) { $pagesToGenerate[$slug] = true; }
 }
 
 $navItems = [];
 foreach ($sections as $slug => $cfg) {
     if (!isset($pagesToGenerate[$slug])) continue;
-    $href = ($slug === 'agile-scale') ? 'index.html' : $cfg['filename'];
+    if ($slug === 'home') continue; // bouton home géré par le logo
+    $href = $cfg['filename'];
     $navItems[] = ['slug'=>$slug, 'label'=>$cfg['label'], 'href'=>$href];
 }
 
@@ -254,7 +262,7 @@ $generatedAt = date('d/m/Y H:i');
 foreach ($sections as $slug => $cfg) {
     if (!isset($pagesToGenerate[$slug])) continue;
 
-    $filename = ($slug === 'agile-scale') ? 'index.html' : $cfg['filename'];
+    $filename = $cfg['filename'];
     if ($cfg['type'] === 'simple') {
         $body = sectionBlockHtml(
             $cfg['title'],

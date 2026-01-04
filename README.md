@@ -30,7 +30,8 @@ Les identifiants des vidéos sont maintenus dans un fichier PHP séparé, puis u
 │   └── video_ids.php          # Listes d'IDs + texte optionnel par vidéo
 ├── includes/
 │   └── footer.html            # Footer commun inclus lors de la génération
-├── index.html                 # Accueil (Agilité à l'Échelle)
+├── index.html                 # Accueil (section $home)
+├── agile-a-lechelle.html      # Agilité à l'Échelle
 ├── retrospectives.html        # (créé si section non vide)
 ├── demos.html                 # (créé si section non vide)
 ├── questions-agiles.html      # (créé si section non vide)
@@ -71,7 +72,8 @@ php generator/generate_videos.php
 ```
 Le script crée/écrase les fichiers html à la **racine du dépôt** :
 
-- `index.html` (toujours)
+- `index.html` (section `$home`, toujours)
+- `agile-a-lechelle.html` (si la section Agilité à l'Échelle a du contenu)
 - et, si contenu présent, `retrospectives.html`, `demos.html`, `questions-agiles.html`, `devops.html`, `glossaire.html`, `agilite-ia.html`
 
 Ensuite, ouvrir `index.html` localement pour prévisualiser, puis **commit/push** les fichiers HTML générés.

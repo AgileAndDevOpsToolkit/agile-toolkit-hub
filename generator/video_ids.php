@@ -11,10 +11,18 @@
  * Laisse [] si vide : la section/sous-section ne s’affichera pas.
  */
  
+/* Accueil (définir les vidéos de la page index) */
+$home = [
+	'intro_html' => '',
+	'videos' => [
+		['id'=>'nEcQbNEdYTQ', 'text'=>'Histoire de l\'agilité'],
+	],
+];
+
 /* Sections sans sous-titre (option intro_html pour un texte additionnel) */
 $agile_scale = [
-  'intro_html' => '',
-  'videos' => [
+	'intro_html' => '',
+	'videos' => [
 	['id'=>'nEcQbNEdYTQ', 'text'=>'Histoire de l\'agilité'],
 	['id'=>'QoZb9bjj3SI', 'text'=>'Pourquoi l\'échelle ? De Scrum à SAFe'],
 	['id'=>'oeHS2HAHXl8',    'text'=>'SAFe - Introducion & niveaux'],
@@ -23,7 +31,7 @@ $agile_scale = [
 	['id'=>'WHBSGK3s33c',   'text'=>'SAFe - Organisation des équipes (topologie) : Component Team et Feature Team'],
 	['id'=>'rdExBxwMUs8',  'text'=>'SAFe - User Stories, Features, Capabilities'],
 	['id'=>'sDQVOk9AcOo', 'text'=>'Types de Stories, DoR & DoD'],
-  ],
+	],
 ];
 
 $retrospectives   = [

@@ -16,8 +16,18 @@ a:hover{text-decoration:underline}
 .wrap{max-width:var(--maxw);margin-inline:auto;padding:24px}
 header{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:saturate(140%) blur(8px);z-index:10;border-bottom:1px solid var(--border)}
 header .wrap{display:flex;gap:12px;align-items:center;justify-content:space-between;padding-block:12px}
-.title{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.2px;white-space:nowrap}
-.title img{height:28px;width:28px;object-fit:contain;display:block}
+.brand-btn{display:inline-flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.2px;white-space:nowrap;
+  padding:8px 12px;border-radius:999px;background:#f0f4ff;border:1px solid #c9d6ff;color:#214bbb;text-decoration:none;
+  box-shadow:0 1px 0 #fff inset, 0 6px 14px rgba(46,108,255,.08);
+}
+.brand-btn[aria-current="page"]{
+  background:var(--accent);
+  border-color:var(--accent);
+  color:#fff;
+  box-shadow:0 0 0 3px rgba(46,108,255,.18) inset, 0 8px 18px rgba(46,108,255,.16);
+}
+.brand-btn:hover{text-decoration:none;box-shadow:0 1px 0 #fff inset, 0 8px 18px rgba(46,108,255,.12)}
+.brand-btn img{height:28px;width:28px;object-fit:contain;display:block}
 
 /* Nav visible mobile : scroll horizontal */
 nav{display:flex;flex-wrap:nowrap;gap:10px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
@@ -76,7 +86,7 @@ footer{color:var(--muted);text-align:center;margin:32px 0 50px}
 @media (max-width:900px){
   /* Titre sur sa propre ligne, menu en dessous */
   header .wrap{flex-direction:column;align-items:flex-start;gap:8px}
-  .title{font-size:1.1rem}
+  .brand-btn{font-size:1.05rem;width:100%;justify-content:flex-start}
   nav{width:100%}
 }
 @media (max-width:600px){
