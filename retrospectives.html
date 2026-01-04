@@ -5,102 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Agile Toolkit Hub — Rétrospectives</title>
   <meta name="description" content="Catalogue vidéo Agile Toolkit Hub (pages statiques par section)." />
-  <style>    :root{
-      --bg: #f7f8fb;
-      --card: #ffffff;
-      --muted: #5b6778;
-      --text: #1a2433;
-      --accent: #2e6cff;
-      --border: #e6e9ef;
-      --radius: 16px;
-      --maxw: 1200px;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans"}
-    a{color:var(--accent);text-decoration:none}
-    a:hover{text-decoration:underline}
-
-    .wrap{max-width:var(--maxw);margin-inline:auto;padding:24px}
-    header{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:saturate(140%) blur(8px);z-index:10;border-bottom:1px solid var(--border)}
-    header .wrap{display:flex;gap:12px;align-items:center;justify-content:space-between;padding-block:12px}
-    .title{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.2px;white-space:nowrap}
-    .title img{height:28px;width:28px;object-fit:contain;display:block}
-
-    /* Nav visible mobile : scroll horizontal */
-    nav{display:flex;flex-wrap:nowrap;gap:10px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-    nav::-webkit-scrollbar{display:none}
-    nav a{
-      flex:0 0 auto;
-      padding:6px 12px;border-radius:999px;background:#f0f4ff;border:1px solid #c9d6ff;
-      color:#214bbb;font-weight:500;white-space:nowrap
-    }
-    nav a[aria-current="page"]{
-      background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700;
-      box-shadow:0 0 0 3px rgba(46,108,255,.18) inset;text-decoration:none
-    }
-
-    main{padding-top:8px}
-    section{margin:28px auto;padding:20px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 1px 0 #fff inset, 0 8px 20px rgba(10,20,40,.05)}
-    h2,h3{margin:0 0 6px}
-    h2{font-size:1.35rem}
-    h3{font-size:1.1rem;color:#2a3a55}
-    .section-head{display:block}
-    .section-body{margin-top:10px}
-    .subsection{margin-top:18px;padding-top:12px;border-top:1px dashed var(--border)}
-    .note{margin:8px 0 0;color:var(--muted)}
-        .note.intro{
-            background:#fff8d6;
-            border:1px solid #f2e5a9;
-            border-radius:12px;
-            padding:12px 14px;
-            color:#4a3c1c;
-            box-shadow:0 6px 18px rgba(180,140,30,.08);
-        }
-    .links{margin:6px 0 0 18px}
-
-    /* Grille responsive : 3 cols desktop, 2 cols tablette, 1 col mobile */
-    .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));margin-top:12px}
-    @media (max-width: 900px){
-      .grid{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
-    }
-    @media (max-width: 600px){
-      .grid{grid-template-columns:1fr}
-    }
-
-    .tile{display:flex;flex-direction:column;gap:8px}
-    .video{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--border);background:#f5f7fb;aspect-ratio:16/9}
-    .video iframe{width:100%;height:100%;border:0;display:block;background:#000}
-    .caption{font-size:.92rem;color:#2a3a55;background:#f9fbff;border:1px solid var(--border);border-radius:10px;padding:8px 10px}
-
-    @supports not (aspect-ratio: 16/9){
-      .video{padding-top:56.25%}
-      .video iframe{position:absolute;inset:0}
-    }
-
-    footer{color:var(--muted);text-align:center;margin:32px 0 50px}
-
-    /* --- Améliorations mobile --- */
-    @media (max-width:900px){
-      /* Titre sur sa propre ligne, menu en dessous */
-      header .wrap{flex-direction:column;align-items:flex-start;gap:8px}
-      .title{font-size:1.1rem}
-      nav{width:100%}
-    }
-    @media (max-width:600px){
-      /* Sous-sections plus visibles */
-      .subsection h3{
-        display:inline-block;
-        font-size:1.2rem;
-        font-weight:700;
-        background:#eaf1ff;
-        color:#153a8a;
-        padding:8px 12px;
-        border-radius:12px;
-        border:1px solid #c9d6ff;
-        margin:6px 0 4px;
-      }
-      .wrap{padding:16px}
-    }</style>
+    <link rel="stylesheet" href="includes/style.css" />
 </head>
 <body>
   <header>
@@ -119,7 +24,7 @@
   </header>
   <main class="wrap">
         <section><div class="section-head"><h2>Rétrospectives</h2></div><div class="section-body"><p class="note intro">👉 Retrouvez tous les templates de rétrospective sur mon site : <a href="https://agileanddevopstoolkit.github.io/retro-templates/" target="_blank" rel="noopener">Retro Templates</a>.</p><div class="grid"><div class="tile">  <div class="video"><iframe loading="lazy" src="https://www.youtube.com/embed/wSJGMRr9vmw" title="YouTube video" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>  <div class="caption">Je donne la méthode pour arriver générer des templates de rétrospective agile avec ChatGPT et Claude</div></div><div class="tile">  <div class="video"><iframe loading="lazy" src="https://www.youtube.com/embed/TzaGwyiHA0A" title="YouTube video" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>  <div class="caption">Tuto : la rétrospective agile la plus simple.</div></div><div class="tile">  <div class="video"><iframe loading="lazy" src="https://www.youtube.com/embed/MDRCbKRLNag" title="YouTube video" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>  <div class="caption">Tuto : La rétro &#039;Positif/Négatif&#039;</div></div><div class="tile">  <div class="video"><iframe loading="lazy" src="https://www.youtube.com/embed/tAPmKfrH7oE" title="YouTube video" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>  <div class="caption">Tuto : Comment dessiner ses templates de rétrospective avec ChatGPT ?</div></div><div class="tile">  <div class="video"><iframe loading="lazy" src="https://www.youtube.com/embed/JaJYQ5kVpts" title="YouTube video" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>  <div class="caption">Tuto : La rétro Speedboat -un grand classique)</div></div><div class="tile">  <div class="video"><iframe loading="lazy" src="https://www.youtube.com/embed/25hmOK3tUe8" title="YouTube video" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>  <div class="caption">Tuto : La rétro &#039;Les 3 Petits Cochons&#039; (un grand classique)</div></div><div class="tile">  <div class="video"><iframe loading="lazy" src="https://www.youtube.com/embed/QZfAt7Uk-eY" title="YouTube video" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>  <div class="caption">Tuto : je crée une rétro sur le thème du Foot</div></div><div class="tile">  <div class="video"><iframe loading="lazy" src="https://www.youtube.com/embed/sfN1yDJYebY" title="YouTube video" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>  <div class="caption">On fait générer une rétro sur le thème du foot par ChatGPT et Claude</div></div><div class="tile">  <div class="video"><iframe loading="lazy" src="https://www.youtube.com/embed/XJWfHcmCOh0" title="YouTube video" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>  <div class="caption">Tuto : je crée une rétro sur le thème de Roland Garros (tennis)</div></div><div class="tile">  <div class="video"><iframe loading="lazy" src="https://www.youtube.com/embed/ruts-tnd7i8" title="YouTube video" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>  <div class="caption">Tuto : je crée une rétro sur le thème de vendredi 13</div></div><div class="tile">  <div class="video"><iframe loading="lazy" src="https://www.youtube.com/embed/fP1bn7rmC6Y" title="YouTube video" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>  <div class="caption">Je présente un petit gadget &#039;La roue des prénoms&#039;, que vous pouvez utiliser pour égayer vos rétros</div></div><div class="tile">  <div class="video"><iframe loading="lazy" src="https://www.youtube.com/embed/WdOWeF6w4w4" title="YouTube video" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>  <div class="caption">Tuto : je crée une rétro sur le thème de la plage</div></div><div class="tile">  <div class="video"><iframe loading="lazy" src="https://www.youtube.com/embed/1pKth1Mk3Ss" title="YouTube video" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>  <div class="caption">L&#039;usine à rétros : je crée un Custom GPT qui génère des templates de rétrospectives à la demande</div></div><div class="tile">  <div class="video"><iframe loading="lazy" src="https://www.youtube.com/embed/FPvt2BDKIpw" title="YouTube video" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>  <div class="caption">Je présente le fonctionnement de l&#039;Usine à Rétros : un Custom GPT qui génère des remplates de rétrospectives agiles à la demande</div></div><div class="tile">  <div class="video"><iframe loading="lazy" src="https://www.youtube.com/embed/AjHxGwM5oYY" title="YouTube video" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>  <div class="caption">Tuto : je vous présente le format de rétro &#039;Carte Postale&#039;</div></div><div class="tile">  <div class="video"><iframe loading="lazy" src="https://www.youtube.com/embed/Rb33e-szups" title="YouTube video" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>  <div class="caption">Tuto : je crée une rétro sur le thème de la rentrée des classes</div></div></div></div></section>
-        <footer>© Agile Toolkit — Pages statiques HTML/CSS générées le 04/01/2026 19:22</footer>
+        <footer>© Agile Toolkit — Pages statiques HTML/CSS générées le 04/01/2026 19:34</footer>
   </main>
 </body>
 </html>
