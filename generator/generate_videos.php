@@ -256,7 +256,10 @@ function aiPageBody(array $sub): string {
     foreach ($sub as $label => $ids) {
         if (!hasVideos($ids)) continue;
         $html .= '<div class="subsection"><h3>'.e($label).'</h3><div class="section-body">';
-        $html .= "<!--\n  <p class=\"note\">Commentaire court pour \"".e($label)."\".</p>\n  <ul class=\"links\">\n    <li><a href=\"#\">Lien</a></li>\n  </ul>\n-->\n";
+        $intro = introFromSection($ids);
+        if (trim($intro) !== '') {
+            $html .= '<p class="note intro">'.$intro.'</p>';
+        }
         $html .= gridHtml(videosFromSection($ids)) . '</div></div>';
     }
     return $html;

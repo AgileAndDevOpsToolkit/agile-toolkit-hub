@@ -27,7 +27,7 @@ $home = [
 
 // 📈 Agilité à l'Échelle (SAFe, stories, PI)
 $agile_scale = [
-	'intro_html' => '',
+	'intro_html' => '💡 Cette série de vidéo est un cours sur l\'agilité à l\'échelle. A regarder dans l\'ordre idéalement',
 	'videos' => [
 	['id'=>'nEcQbNEdYTQ', 'text'=>'Histoire de l\'agilité'],
 	['id'=>'QoZb9bjj3SI', 'text'=>'Pourquoi l\'échelle ? De Scrum à SAFe'],
@@ -41,7 +41,7 @@ $agile_scale = [
 ];
 // 💡 Templates et formats de rétrospectives
 $retrospectives   = [
-	'intro_html' => '👉 Retrouvez tous les templates de rétrospective sur mon site : <a href="https://agileanddevopstoolkit.github.io/retro-templates/" target="_blank" rel="noopener">Retro Templates</a>.',
+	'intro_html' => '💡 Retrouvez tous les templates de rétrospective sur mon site 👉 <a href="https://agileanddevopstoolkit.github.io/retro-templates/" target="_blank" rel="noopener">Retro Templates</a>.',
 	'videos' => [
 		['id'=>'wSJGMRr9vmw', 'text'=>'Je donne la méthode pour arriver générer des templates de rétrospective agile avec ChatGPT et Claude'],
 		['id'=>'TzaGwyiHA0A ', 'text'=>'Tuto : la rétrospective agile la plus simple.'],
@@ -69,7 +69,7 @@ $retrospectives   = [
 ];
 // 🎬 Démonstrations et conseils de démo
 $demos            = [
-	'intro_html' => '',
+	'intro_html' => '💡 Mon appli \'Bingo Démo\' pour évaluer une démo ou vous aider à préparer vos démos 👉 <a href="https://agileanddevopstoolkit.github.io/BingoDemo/" target="_blank" rel="noopener">Bingo Demo</a>.',
 	'videos' => [
 		['id'=>'ZOLOwiOJA0k', 'text'=>'3 Conseils pour réussir toutes vos démos'],
 		['id'=>'K2VijLacVJQ', 'text'=>'Bingo Démo (pour réussir toutes vos démos)'],
@@ -153,7 +153,7 @@ $ai_reflexion         = [
 ];
 // ⭐ Les essentiels IA appliqués à l'agilité
 $ai_essentiels        = [
-	'intro_html' => '',
+	'intro_html' => '💡 Cette section est une sélection des vidéos essentielles de la chaîne sur l\'IA afin d\'en comprendre les enjeux et applications sans avoir à regarder toutes les vidéos IA de la chaîne.',
 	'videos' => [
 		['id'=>'OChJUyU8dWk', 'text'=>'On teste ChatGPT, CLaude et Gemini sur 3 questions d\'agilité basiques'],
 		['id'=>'7MEj3jMiVic', 'text'=>'Je montre commen ChatGPT, Claude et Gemini peuvent générer des Release Notes à partir d\'un fichier gitlog'],
