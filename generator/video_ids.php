@@ -11,29 +11,21 @@
  * Laisse [] si vide : la section/sous-section ne s’affichera pas.
  */
  
-/* Accueil (définir les vidéos de la page index) */
+// 🏠 Accueil (définir les vidéos de la page index)
 $home = [
 	'intro_html' => '',
 	'videos' => [
-		['id'=>'MDLbvJp229I', 'text'=>'Je fais 6 prédictions sur les évolutions à 10 ans apportées par l\'IA'],
-		['id'=>'oM9IVh89dhg', 'text'=>'Générer des diagrammes de classes et les versionner dans GitHub automatiquement grâce à Mermaid et ChatGPT'],
-		['id'=>'DOIwOiOvyv8', 'text'=>'Vidéo anniversaire 1 an de la chaîne'],
-		['id'=>'7Gg44-PbNIQ', 'text'=>'Je présente ce site web Agile Toolkit Hub'],
-		['id'=>'3Nil-nXFUXc', 'text'=>'J\'explique pourquoi l\'IA ne progresse plus'],
-		['id'=>'K2VijLacVJQ', 'text'=>'Bingo Démo (pour réussir toutes vos démos'],
-		['id'=>'qNG42lR2wMc', 'text'=>'Tuto pour faire des calls API ChatGPT'],
-		['id'=>'U_o8g4ACgTk', 'text'=>'Tuto rétrospective Start/Stop/Continue'],
-		['id'=>'0wq97uCeKx4', 'text'=>'Je teste gpt-oss, le LLM libre d\'OpenAI (l\'éditeur de ChatGPT)'],
-		['id'=>'6G89qC8_jxQ', 'text'=>'3 façons dont l\'IA révolutionne la programmation'],
-		['id'=>'cHTKD-KoAko', 'text'=>'Mon retour d\'expérience sur la conférence Agile en Seine 2025'],
-		['id'=>'5LoHfpywsD0', 'text'=>'Je vous explique en quoi l\'IA est un nouveau paradigme de programmation'],
-		['id'=>'9Uns3D6nOjE', 'text'=>'Je vous propose une rétrospective sur le thème d\'Halloween'],
-		['id'=>'msbehMVDFeA', 'text'=>'On teste la reconnaissance vocale (Speech to Text) de toutes les IA'],
-		['id'=>'zofwz0iiaX8', 'text'=>'L\'IA génère des templates de rétrospectives sur le thème d\'Halloween'],
+		['id'=>'TPRjzFR78bQ', 'text'=>'Test : que vaut Google Nano Banana sur la génération de templates de rétrospective ?'],
+		['id'=>'-ENxaTp2_0U', 'text'=>'L\'Agilité est-elle morte ?'],
+		['id'=>'oZ0jPkYszbg', 'text'=>'Vibe coding d\'une mini appli de Burndown Chart (ChatGPT, Synthèse vocale)'],
+		['id'=>'Z5ujxT3MZVc', 'text'=>'Tuto Rétrospective 4L'],
+		['id'=>'TBvkV607Tic', 'text'=>'J\'explique les différents composants techniques d\'une IA générative'],
+		['id'=>'ZdEr54DIefg', 'text'=>'Tuto Mood Retrospective'],
+
 	],
 ];
 
-/* Sections sans sous-titre (option intro_html pour un texte additionnel) */
+// 📈 Agilité à l'Échelle (SAFe, stories, PI)
 $agile_scale = [
 	'intro_html' => '',
 	'videos' => [
@@ -47,7 +39,7 @@ $agile_scale = [
 	['id'=>'sDQVOk9AcOo', 'text'=>'Types de Stories, DoR & DoD'],
 	],
 ];
-
+// 💡 Templates et formats de rétrospectives
 $retrospectives   = [
 	'intro_html' => '👉 Retrouvez tous les templates de rétrospective sur mon site : <a href="https://agileanddevopstoolkit.github.io/retro-templates/" target="_blank" rel="noopener">Retro Templates</a>.',
 	'videos' => [
@@ -70,9 +62,12 @@ $retrospectives   = [
 		['id'=>'U_o8g4ACgTk', 'text'=>'Tuto rétrospective Start/Stop/Continue'],
 		['id'=>'9Uns3D6nOjE', 'text'=>'Je vous propose une rétrospective sur le thème d\'Halloween'],
 		['id'=>'zofwz0iiaX8', 'text'=>'L\'IA génère des templates de rétrospectives sur le thème d\'Halloween'],
-
+		['id'=>'TPRjzFR78bQ', 'text'=>'Test : que vaut Google Nano Banana sur la génération de templates de rétrospective ?'],
+		['id'=>'Z5ujxT3MZVc', 'text'=>'Tuto Rétrospective 4L'],
+		['id'=>'ZdEr54DIefg', 'text'=>'Tuto Mood Retrospective'],
 	],
 ];
+// 🎬 Démonstrations et conseils de démo
 $demos            = [
 	'intro_html' => '',
 	'videos' => [
@@ -80,13 +75,16 @@ $demos            = [
 		['id'=>'K2VijLacVJQ', 'text'=>'Bingo Démo (pour réussir toutes vos démos)'],
 	],
 ];
+// ❓ Questions agiles courantes
 $questions_agiles = [
 	'intro_html' => '',
 	'videos' => [
 		['id'=>'twcUbV_Wh2g', 'text'=>'Différence entre Risque et Dépendance'],
-		['id'=>'8nkLlRbT-2A ', 'text'=>'3 Conseils pour gérér une équipe dont tous les membres sont à temps partiel car partagés avec d\'autres équipes']
+		['id'=>'8nkLlRbT-2A ', 'text'=>'3 Conseils pour gérér une équipe dont tous les membres sont à temps partiel car partagés avec d\'autres équipes'],
+		['id'=>'-ENxaTp2_0U', 'text'=>'L\'Agilité est-elle morte ?'],
 	],
 ];
+// 🛠️ DevOps et outils
 $devops           = [
 	'intro_html' => '',
 	'videos' => [
@@ -97,7 +95,7 @@ $devops           = [
 	],
 ];
 
-/* Glossaire (sous-sections) */
+// 📖 Glossaire A (entrées A)
 $glossaire_a = [
 	'intro_html' => '',
 	'videos' => [
@@ -106,12 +104,13 @@ $glossaire_a = [
 		'L6QMqTG5j1I', 'FxkqMh5mM24', 'MM3X7MvXYuQ'
 	],
 ];
+// 📖 Glossaire B (entrées B)
 $glossaire_b = [
 	'intro_html' => '',
 	'videos' => ['5uNde1yFawk', '5TeeNfOffDc', '6jSZZ4XTcmg', 'WknLX4DEs1k'],
 ];
 
-/* Agilité & IA (sous-sections) */
+// 🧪 Benchmarks IA sur questions agiles
 $ai_benchmark         = [
 	'intro_html' => '',
 	'videos' => [
@@ -134,6 +133,7 @@ $ai_benchmark         = [
 		['id'=>'msbehMVDFeA', 'text'=>'On teste la reconnaissance vocale (Speech to Text) de toutes les IA'],
 	],
 ];
+// 🤔 Réflexions sur l'IA et l'agilité
 $ai_reflexion         = [
 	'intro_html' => '',
 	'videos' => [
@@ -146,10 +146,12 @@ $ai_reflexion         = [
 		['id'=>'3Nil-nXFUXc', 'text'=>'J\'explique pourquoi l\'IA ne progresse plus'],
 		['id'=>'6G89qC8_jxQ', 'text'=>'3 façons dont l\'IA révolutionne la programmation'],
 		['id'=>'5LoHfpywsD0', 'text'=>'Je vous explique en quoi l\'IA est un nouveau paradigme de programmation'],
+		['id'=>'TBvkV607Tic', 'text'=>'J\'explique les différents composants techniques d\'une IA générative'],
 		['id'=>'', 'text'=>''],
 		['id'=>'', 'text'=>'']
 	],
 ];
+// ⭐ Les essentiels IA appliqués à l'agilité
 $ai_essentiels        = [
 	'intro_html' => '',
 	'videos' => [
@@ -177,14 +179,17 @@ $ai_essentiels        = [
 		['id'=>'6G89qC8_jxQ', 'text'=>'3 façons dont l\'IA révolutionne la programmation'],
 		['id'=>'5LoHfpywsD0', 'text'=>'Je vous explique en quoi l\'IA est un nouveau paradigme de programmation'],
 		['id'=>'msbehMVDFeA', 'text'=>'On teste la reconnaissance vocale (Speech to Text) de toutes les IA'],
+		['id'=>'TBvkV607Tic', 'text'=>'J\'explique les différents composants techniques d\'une IA générative'],
 		['id'=>'', 'text'=>'']
 	],
 ];
+// 🎨 Templates de rétro générés par IA
 $ai_retro_templates   = [
 	'intro_html' => '',
 	'videos' => [
 		['id'=>'FI1OlBZ-HaE', 'text'=>'6 mois après notre premier test on refait un test de génération de templates de rétrospective avec ChatGPT, Claude et Gemini afin de voir si l\'IA a fait des progrès'],
 		['id'=>'zofwz0iiaX8', 'text'=>'L\'IA génère des templates de rétrospectives sur le thème d\'Halloween'],
+		['id'=>'TPRjzFR78bQ', 'text'=>'Test : que vaut Google Nano Banana sur la génération de templates de rétrospective ?'],
 		['id'=>'', 'text'=>''],
 		['id'=>'', 'text'=>''],
 		['id'=>'', 'text'=>''],
@@ -194,10 +199,11 @@ $ai_retro_templates   = [
 		['id'=>'', 'text'=>'']
 	],
 ];
+// 🗂️ Synthèse et génération de documents
 $ai_synthese          = [
 	'intro_html' => '',
 	'videos' => [
-		['id'=>'7MEj3jMiVic', 'text'=>'Je montre commen ChatGPT, Claude et Gemini peuvent générer des Release Notes à partir d\'un fichier gitlog'],
+		['id'=>'7MEj3jMiVic', 'text'=>'Je montre comment ChatGPT, Claude et Gemini peuvent générer des Release Notes à partir d\'un fichier gitlog'],
 		['id'=>'XaUYdbCj6UM', 'text'=>'On demande à l\'IA de générer les slides d\'une présentation. On teste ChatGPT et Gamma, une IA spécialisée dans la génération de présentations'],
 		['id'=>'Ea3jXVh72RA', 'text'=>'On fait générer le contenu de slides par ChatGPT et je montre comment poser la question et copier/coller rapidement le résultat dans Google Slides'],
 		['id'=>'wSJGMRr9vmw', 'text'=>'Je donne la méthode pour arriver générer des templates de rétrospective agile avec ChatGPT et Claude'],
@@ -209,6 +215,7 @@ $ai_synthese          = [
 		['id'=>'', 'text'=>'']
 	],
 ];
+// 🎥 Présentation de documents et slides
 $ai_presentation_docs = [
 	'intro_html' => '',
 	'videos' => [
@@ -223,6 +230,7 @@ $ai_presentation_docs = [
 		['id'=>'', 'text'=>'']
 	],
 ];
+// 💻 IA locale et modèles on-prem
 $ai_locale            = [
 	'intro_html' => '',
 	'videos' => [
@@ -237,6 +245,7 @@ $ai_locale            = [
 		['id'=>'', 'text'=>'']
 	],
 ];
+// 🧩 Custom GPTs et agents dédiés
 $ai_custom_gpts       = [
 	'intro_html' => '',
 	'videos' => [
@@ -251,6 +260,7 @@ $ai_custom_gpts       = [
 		['id'=>'', 'text'=>'']
 	],
 ];
+// 🎧 Vibe Coding et développement assisté
 $ai_vibe_coding       = [
 	'intro_html' => '',
 	'videos' => [
@@ -259,12 +269,13 @@ $ai_vibe_coding       = [
 		['id'=>'Ii_JgY4HaTw', 'text'=>'Vibe Coding : On crée une petite application pour faire des estimations agiles avec la méthode Extreme Quotation. On utilise ChatGPT et la synthèse vocal (Speech to texte)'],
 		['id'=>'R2gwP62BKCY', 'text'=>'Vibe Coding : on améliore l\'application pour les estimations agiles et en même temps on se livre à une petite réflexion sur cette nouvelle pratique de développement (le Vibe Coding)'],
 		['id'=>'_J655DHocxk', 'text'=>'Vibe Coding : on améliore la roue des prénoms'],
-		['id'=>'', 'text'=>''],
+		['id'=>'oZ0jPkYszbg', 'text'=>'Vibe coding d\'une mini appli de Burndown Chart (ChatGPT, Synthèse vocale)'],
 		['id'=>'', 'text'=>''],
 		['id'=>'', 'text'=>''],
 		['id'=>'', 'text'=>'']
 	],
 ];
+// 🎙️ Speech to Text et voix
 $ai_speech_to_text    = [
 	'intro_html' => '',
 	'videos' => [
@@ -281,6 +292,7 @@ $ai_speech_to_text    = [
 		['id'=>'', 'text'=>'']
 	],
 ];
+// 🔌 APIs de LLM et intégrations
 $ai_apis_llm          = [
 	'intro_html' => '',
 	'videos' => [
@@ -296,6 +308,7 @@ $ai_apis_llm          = [
 	],
 ];
 
+// 🌟 Specials (sélections spéciales)
 $specials         = [
 	'intro_html' => '',
 	'videos' => [
