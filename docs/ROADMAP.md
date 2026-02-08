@@ -1,4 +1,4 @@
-
+Liste d'idées de fonctionnalités à ajouter
 - [X] Encart “Vidéos récemment ajoutées”
 - [X] Possibilité d'avoir un message en dessous du titre de chaque section
 - [X] Lien vers le site retro-template
