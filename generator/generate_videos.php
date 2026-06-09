@@ -11,6 +11,9 @@
 
 require __DIR__ . '/video_ids.php';
 
+const VIDEOS_METADATA_URL = 'https://agileanddevopstoolkit.github.io/agile-toolkit-assets/videos-metadata/videos-metadata.json';
+const AGILE_SCALE_SERIE_NAME = "01 Agilité à l'Échelle";
+
 // Dossier de sortie : racine du dépôt (GitHub Pages configuré sur la racine)
 $outputDir = realpath(__DIR__ . '/..') ?: (__DIR__ . '/..');
 
@@ -25,6 +28,87 @@ $footerHtml = ($footerPath && is_file($footerPath))
  * ======================= */
 
 function e(string $s): string { return htmlspecialchars($s, ENT_QUOTES, 'UTF-8'); }
+
+function fetchUrlContent(string $url): ?string {
+    $context = stream_context_create([
+        'http' => ['timeout' => 12],
+        'https' => ['timeout' => 12],
+    ]);
+    $content = @file_get_contents($url, false, $context);
+    if (is_string($content) && trim($content) !== '') {
+        return $content;
+    }
+
+    if (!function_exists('curl_init')) {
+        return null;
+    }
+
+    $ch = curl_init($url);
+    if ($ch === false) {
+        return null;
+    }
+    curl_setopt_array($ch, [
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT => 12,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_USERAGENT => 'agile-toolkit-hub-generator/1.0',
+    ]);
+    $body = curl_exec($ch);
+    $httpCode = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    if (is_string($body) && trim($body) !== '' && $httpCode >= 200 && $httpCode < 300) {
+        return $body;
+    }
+
+    return null;
+}
+
+function loadAgileScaleSeriesFromMetadata(array $fallback): array {
+    $json = fetchUrlContent(VIDEOS_METADATA_URL);
+    if ($json === null) {
+        fwrite(STDERR, "Avertissement: impossible de télécharger le metadata distant, repli sur video_ids.php pour Agilité à l'Échelle.\n");
+        return $fallback;
+    }
+
+    $decoded = json_decode($json, true);
+    if (!is_array($decoded)) {
+        fwrite(STDERR, "Avertissement: JSON metadata invalide, repli sur video_ids.php pour Agilité à l'Échelle.\n");
+        return $fallback;
+    }
+
+    $seriesList = isset($decoded[0]) ? $decoded : [$decoded];
+    foreach ($seriesList as $serie) {
+        if (!is_array($serie)) {
+            continue;
+        }
+        $serieName = isset($serie['serie']) ? (string)$serie['serie'] : '';
+        if ($serieName !== AGILE_SCALE_SERIE_NAME) {
+            continue;
+        }
+
+        $intro = isset($serie['intro-hub-html']) ? (string)$serie['intro-hub-html'] : '';
+        $videos = [];
+        $rawVideos = isset($serie['videos']) && is_array($serie['videos']) ? $serie['videos'] : [];
+
+        foreach ($rawVideos as $video) {
+            if (!is_array($video)) {
+                continue;
+            }
+            $id = isset($video['id_youtube']) ? trim((string)$video['id_youtube']) : '';
+            if ($id === '') {
+                continue;
+            }
+            $title = isset($video['titre']) ? (string)$video['titre'] : '';
+            $videos[] = ['id' => $id, 'text' => $title];
+        }
+
+        return ['intro_html' => $intro, 'videos' => $videos];
+    }
+
+    fwrite(STDERR, "Avertissement: série '".AGILE_SCALE_SERIE_NAME."' introuvable dans le metadata distant, repli sur video_ids.php.\n");
+    return $fallback;
+}
 
 function normalizeVideos(array $arr): array {
     // Transforme chaque entrée en ['id'=>..., 'text'=>...]
@@ -132,7 +216,7 @@ $sections = [
         'label' => "Agilité à l'Échelle",
         'title' => "Cours sur l'Agilité à l'Échelle",
         'type'  => 'simple',
-        'data'  => $agile_scale,
+        'data'  => loadAgileScaleSeriesFromMetadata($agile_scale),
         'filename' => 'agile-a-lechelle.html',
     ],
     'retrospectives' => [
