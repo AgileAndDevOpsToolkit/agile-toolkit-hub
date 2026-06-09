@@ -1,0 +1,2 @@
+- Demander à ce que le code HTML généré soit indenté (ne pas tout mettre sur une même ligne pour permettes un relecture humaine)
+- Afficher quelque part le nombre de vidéos sur le site (l'afficher pour chaque catégorie ?)
